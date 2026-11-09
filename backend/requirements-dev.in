@@ -1,0 +1,12 @@
+# Development, test and lint tooling. Compile with:
+#   uv pip compile requirements-dev.in --python-version 3.11 -o requirements-dev.txt
+-r requirements.in
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+pytest-cov>=4.1.0
+ruff>=0.3.0
+mypy>=1.9.0
+# Semantic evaluator tests exercise the optional DeepEval adapter
+deepeval
+# scripts/generate_screenshots.py
+pillow

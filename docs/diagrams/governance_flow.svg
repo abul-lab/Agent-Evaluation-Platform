@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="100%" height="100%" style="background:#F8FAFC; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <style>
+      .box { fill: #FFFFFF; stroke: #E2E8F0; stroke-width: 1.5; rx: 12px; }
+      .layer-bg { fill: #FFFFFF; stroke: #CBD5E1; stroke-width: 1.5; rx: 16px; }
+      .header-title { font-size: 20px; font-weight: 800; fill: #0F172A; }
+      .header-sub { font-size: 13px; font-weight: 500; fill: #64748B; }
+      .stage-title { font-size: 12px; font-weight: 700; fill: #475569; letter-spacing: 0.05em; text-transform: uppercase; }
+      .card-title { font-size: 13px; font-weight: 700; fill: #0F172A; }
+      .card-desc { font-size: 11px; font-weight: 500; fill: #64748B; }
+      .arrow { stroke: #94A3B8; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .arrow-accent { stroke: #2563EB; stroke-width: 2.5; fill: none; stroke-linecap: round; }
+      .badge-pass { fill: #ECFDF5; stroke: #A7F3D0; }
+      .badge-block { fill: #FEF2F2; stroke: #FECACA; }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#94A3B8" />
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563EB" />
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.04" />
+    </filter>
+  </defs>
+
+  <!-- Title Bar -->
+  <g transform="translate(40, 30)">
+    <rect width="40" height="40" rx="8" fill="#FEF2F2" stroke="#FECACA" stroke-width="1.5" />
+    <text x="20" y="25" text-anchor="middle" font-size="16" font-weight="900" fill="#DC2626">GV</text>
+    <text x="56" y="22" class="header-title">Enterprise Governance &amp; Hard-Gating Engine</text>
+    <text x="56" y="38" class="header-sub">Deterministic policy enforcement, automated CI/CD release blocks, and audit compliance trails</text>
+  </g>
+
+  <!-- Stage 1: Dual Input Contracts -->
+  <g transform="translate(40, 95)">
+    <rect width="230" height="625" class="layer-bg" filter="url(#shadow)" />
+    <text x="24" y="32" class="stage-title">1. Policy &amp; Eval Inputs</text>
+
+    <!-- Eval Scorecard Input -->
+    <g transform="translate(16, 50)">
+      <rect width="198" height="150" class="box" />
+      <text x="14" y="22" class="card-title">Evaluation Scorecard</text>
+      <text x="14" y="40" class="card-desc">• Composite score [0-100]</text>
+      <text x="14" y="58" class="card-desc">• 7 domain sub-scores</text>
+      <text x="14" y="76" class="card-desc">• Classified findings list</text>
+      <text x="14" y="94" class="card-desc">• Severity: CRITICAL / HIGH</text>
+      <text x="14" y="112" class="card-desc">• Cost, tokens &amp; latency stats</text>
+      <rect x="14" y="124" width="120" height="16" rx="3" fill="#EFF6FF" />
+      <text x="74" y="136" text-anchor="middle" font-size="9" font-weight="700" fill="#2563EB">IMMUTABLE SNAPSHOT</text>
+    </g>
+
+    <!-- Policy Profile Input -->
+    <g transform="translate(16, 215)">
+      <rect width="198" height="180" class="box" />
+      <text x="14" y="22" class="card-title">Governance Policy Profile</text>
+      <text x="14" y="40" class="card-desc">• Profile: Prod / Staging / Dev</text>
+      <text x="14" y="58" class="card-desc">• Global Score Floor: ≥ 85.0</text>
+      <text x="14" y="76" class="card-desc">• Safety Score Floor: = 1.00</text>
+      <text x="14" y="94" class="card-desc">• Tool Fidelity Floor: ≥ 0.90</text>
+      <text x="14" y="112" class="card-desc">• Max Cost Ceiling: $0.10</text>
+      <text x="14" y="130" class="card-desc">• Zero-tolerance Hard Gates</text>
+      <rect x="14" y="148" width="135" height="18" rx="3" fill="#FEF3C7" />
+      <text x="81" y="161" text-anchor="middle" font-size="9" font-weight="700" fill="#B45309">ENVIRONMENT SCOPED</text>
+    </g>
+
+    <g transform="translate(16, 410)">
+      <rect width="198" height="195" rx="8" fill="#F8FAFC" stroke="#E2E8F0" />
+      <text x="14" y="24" font-size="11" font-weight="700" fill="#475569">Audit Invariants</text>
+      <text x="14" y="48" font-size="11" font-weight="500" fill="#64748B">Versioned policy definitions</text>
+      <text x="14" y="72" font-size="11" font-weight="500" fill="#64748B">Cryptographic audit IDs</text>
+      <text x="14" y="96" font-size="11" font-weight="500" fill="#64748B">Zero subjective grading</text>
+      <text x="14" y="120" font-size="11" font-weight="500" fill="#64748B">100% Deterministic logic</text>
+      <rect x="14" y="145" width="170" height="32" rx="4" fill="#FFFFFF" stroke="#CBD5E1" />
+      <text x="99" y="165" text-anchor="middle" font-size="11" font-weight="700" fill="#0F172A">&lt; 1ms Verdict Decision</text>
+    </g>
+  </g>
+
+  <!-- Connect Stage 1 -> 2 -->
+  <path d="M 270 405 L 310 405" class="arrow-accent" marker-end="url(#arrowhead-blue)" />
+
+  <!-- Stage 2: Policy Rule Evaluator -->
+  <g transform="translate(310, 95)">
+    <rect width="320" height="625" class="layer-bg" filter="url(#shadow)" />
+    <text x="24" y="32" class="stage-title">2. Policy Rule Evaluation Engine</text>
+
+    <!-- Floor Checks -->
+    <g transform="translate(16, 50)">
+      <rect width="288" height="160" class="box" />
+      <text x="14" y="22" class="card-title">Score Floor Verification</text>
+      <text x="14" y="42" class="card-desc">Evaluates if domain metrics satisfy threshold rules:</text>
+      <rect x="14" y="56" width="260" height="24" rx="4" fill="#F8FAFC" stroke="#E2E8F0" />
+      <text x="24" y="72" font-size="11" font-family="monospace" fill="#0F172A">score.composite &gt;= policy.min_score</text>
+      <rect x="14" y="86" width="260" height="24" rx="4" fill="#F8FAFC" stroke="#E2E8F0" />
+      <text x="24" y="102" font-size="11" font-family="monospace" fill="#0F172A">score.safety &gt;= policy.min_safety</text>
+      <rect x="14" y="116" width="260" height="24" rx="4" fill="#F8FAFC" stroke="#E2E8F0" />
+      <text x="24" y="132" font-size="11" font-family="monospace" fill="#0F172A">score.fidelity &gt;= policy.min_fidelity</text>
+    </g>
+
+    <!-- Hard Gating -->
+    <g transform="translate(16, 225)">
+      <rect width="288" height="190" class="box" stroke="#FCA5A5" />
+      <text x="14" y="22" class="card-title" fill="#DC2626">Hard Gate Enforcer (Zero Tolerance)</text>
+      <text x="14" y="42" class="card-desc">Non-negotiable blocks regardless of composite score:</text>
+      
+      <g transform="translate(14, 56)">
+        <rect width="260" height="26" rx="4" fill="#FEF2F2" stroke="#FECACA" />
+        <text x="10" y="17" font-size="11" font-weight="600" fill="#991B1B">🛑 Secret / API Key Leaked</text>
+      </g>
+      <g transform="translate(14, 88)">
+        <rect width="260" height="26" rx="4" fill="#FEF2F2" stroke="#FECACA" />
+        <text x="10" y="17" font-size="11" font-weight="600" fill="#991B1B">🛑 Prompt Injection Marker Found</text>
+      </g>
+      <g transform="translate(14, 120)">
+        <rect width="260" height="26" rx="4" fill="#FEF2F2" stroke="#FECACA" />
+        <text x="10" y="17" font-size="11" font-weight="600" fill="#991B1B">🛑 Unbounded Loop Lockup Detected</text>
+      </g>
+      <g transform="translate(14, 152)">
+        <rect width="260" height="26" rx="4" fill="#FEF2F2" stroke="#FECACA" />
+        <text x="10" y="17" font-size="11" font-weight="600" fill="#991B1B">🛑 Severe Retry Storm Cascade</text>
+      </g>
+    </g>
+
+    <!-- Finding Aggregation -->
+    <g transform="translate(16, 430)">
+      <rect width="288" height="165" class="box" />
+      <text x="14" y="22" class="card-title">Violation Collector &amp; Provenance</text>
+      <text x="14" y="42" class="card-desc">• Captures exact rule breach rationale</text>
+      <text x="14" y="60" class="card-desc">• Links violation to specific trace step index</text>
+      <text x="14" y="78" class="card-desc">• Appends offending tool call / secret pattern</text>
+      <text x="14" y="96" class="card-desc">• Emits remediation advice for engineers</text>
+      <rect x="14" y="114" width="260" height="32" rx="4" fill="#EFF6FF" stroke="#BFDBFE" />
+      <text x="144" y="134" text-anchor="middle" font-size="11" font-weight="700" fill="#1D4ED8">Version-Snapshotted Audit Serialization</text>
+    </g>
+  </g>
+
+  <!-- Connect Stage 2 -> 3 -->
+  <path d="M 630 405 L 670 405" class="arrow-accent" marker-end="url(#arrowhead-blue)" />
+
+  <!-- Stage 3: Verdict Matrix -->
+  <g transform="translate(670, 95)">
+    <rect width="230" height="625" class="layer-bg" filter="url(#shadow)" />
+    <text x="24" y="32" class="stage-title">3. Compliance Verdict</text>
+
+    <!-- Passed Card -->
+    <g transform="translate(16, 50)">
+      <rect width="198" height="160" class="box" fill="#F0FDF4" stroke="#86EFAC" />
+      <rect x="14" y="14" width="70" height="22" rx="4" class="badge-pass" />
+      <text x="49" y="29" text-anchor="middle" font-size="11" font-weight="800" fill="#166534">PASSED</text>
+      <text x="14" y="58" font-size="12" font-weight="700" fill="#166534">Release Permitted</text>
+      <text x="14" y="78" font-size="11" font-weight="500" fill="#15803D">• All score floors satisfied</text>
+      <text x="14" y="96" font-size="11" font-weight="500" fill="#15803D">• Zero hard gates tripped</text>
+      <text x="14" y="114" font-size="11" font-weight="500" fill="#15803D">• Budget within ceiling</text>
+      <text x="14" y="138" font-size="11" font-weight="700" fill="#166534">CI Exit Code: 0</text>
+    </g>
+
+    <!-- Blocked Card -->
+    <g transform="translate(16, 225)">
+      <rect width="198" height="185" class="box" fill="#FEF2F2" stroke="#FCA5A5" />
+      <rect x="14" y="14" width="75" height="22" rx="4" class="badge-block" />
+      <text x="51" y="29" text-anchor="middle" font-size="11" font-weight="800" fill="#991B1B">BLOCKED</text>
+      <text x="14" y="58" font-size="12" font-weight="700" fill="#991B1B">Deployment Halted</text>
+      <text x="14" y="78" font-size="11" font-weight="500" fill="#B91C1C">• Hard gate tripped or score below floor</text>
+      <text x="14" y="104" font-size="11" font-weight="500" fill="#B91C1C">• Automated rollback signaled</text>
+      <text x="14" y="128" font-size="11" font-weight="500" fill="#B91C1C">• Incident ticket / alert created</text>
+      <text x="14" y="158" font-size="11" font-weight="700" fill="#991B1B">CI Exit Code: 1</text>
+    </g>
+
+    <!-- Audit Record -->
+    <g transform="translate(16, 425)">
+      <rect width="198" height="175" class="box" />
+      <text x="14" y="22" class="card-title">GovernanceAuditRecord</text>
+      <text x="14" y="44" class="card-desc">• audit_id (UUID)</text>
+      <text x="14" y="62" class="card-desc">• evaluation_id</text>
+      <text x="14" y="80" class="card-desc">• policy_profile_id</text>
+      <text x="14" y="98" class="card-desc">• verdict: PASS | BLOCK</text>
+      <text x="14" y="116" class="card-desc">• violations: List[str]</text>
+      <text x="14" y="134" class="card-desc">• timestamp &amp; auditor</text>
+      <rect x="14" y="148" width="170" height="16" rx="3" fill="#F1F5F9" />
+    </g>
+  </g>
+
+  <!-- Connect Stage 3 -> 4 -->
+  <path d="M 900 405 L 940 405" class="arrow-accent" marker-end="url(#arrowhead-blue)" />
+
+  <!-- Stage 4: CI/CD & Operations Integration -->
+  <g transform="translate(940, 95)">
+    <rect width="220" height="625" class="layer-bg" filter="url(#shadow)" />
+    <text x="24" y="32" class="stage-title">4. Enforced Actions</text>
+
+    <g transform="translate(16, 50)">
+      <rect width="188" height="110" class="box" />
+      <text x="14" y="22" class="card-title">CI / CD Pipeline</text>
+      <text x="14" y="42" class="card-desc">• GitHub Actions Action</text>
+      <text x="14" y="58" class="card-desc">• GitLab CI / Jenkins</text>
+      <text x="14" y="74" class="card-desc">• Hard stop on exit 1</text>
+      <text x="14" y="90" class="card-desc">• PR checks &amp; comments</text>
+    </g>
+
+    <g transform="translate(16, 175)">
+      <rect width="188" height="110" class="box" />
+      <text x="14" y="22" class="card-title">Alert Dispatch</text>
+      <text x="14" y="42" class="card-desc">• Instant Teams Card</text>
+      <text x="14" y="58" class="card-desc">• Slack incident thread</text>
+      <text x="14" y="74" class="card-desc">• PagerDuty / Webhook</text>
+      <text x="14" y="90" class="card-desc">• Remediation deep-link</text>
+    </g>
+
+    <g transform="translate(16, 300)">
+      <rect width="188" height="110" class="box" />
+      <text x="14" y="22" class="card-title">Audit Trail</text>
+      <text x="14" y="42" class="card-desc">• Immutable DB log</text>
+      <text x="14" y="58" class="card-desc">• SOC2 / ISO compliance</text>
+      <text x="14" y="74" class="card-desc">• Workspace export</text>
+      <text x="14" y="90" class="card-desc">• Historical regression</text>
+    </g>
+
+    <g transform="translate(16, 425)">
+      <rect width="188" height="180" class="box" fill="#EFF6FF" stroke="#BFDBFE" />
+      <text x="14" y="24" class="card-title" fill="#1D4ED8">Zero Unregulated AI</text>
+      <text x="14" y="48" font-size="11" font-weight="600" fill="#1D4ED8">Every agent deployment</text>
+      <text x="14" y="68" font-size="11" font-weight="500" fill="#1E40AF">is deterministically audited</text>
+      <text x="14" y="88" font-size="11" font-weight="500" fill="#1E40AF">before touching production</text>
+      <text x="14" y="108" font-size="11" font-weight="500" fill="#1E40AF">data or enterprise users.</text>
+      <rect x="14" y="130" width="160" height="35" rx="6" fill="#2563EB" />
+      <text x="94" y="152" text-anchor="middle" font-size="11" font-weight="700" fill="#FFFFFF">100% Policy Guard</text>
+    </g>
+  </g>
+</svg>

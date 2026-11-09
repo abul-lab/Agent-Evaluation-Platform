@@ -1,0 +1,239 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="100%" height="100%" style="background:#F8FAFC; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <style>
+      .box { fill: #FFFFFF; stroke: #E2E8F0; stroke-width: 1.5; rx: 12px; }
+      .layer-bg { fill: #FFFFFF; stroke: #CBD5E1; stroke-width: 1.5; rx: 16px; }
+      .header-title { font-size: 20px; font-weight: 800; fill: #0F172A; }
+      .header-sub { font-size: 13px; font-weight: 500; fill: #64748B; }
+      .stage-title { font-size: 12px; font-weight: 700; fill: #475569; letter-spacing: 0.05em; text-transform: uppercase; }
+      .card-title { font-size: 13px; font-weight: 700; fill: #0F172A; }
+      .card-desc { font-size: 11px; font-weight: 500; fill: #64748B; }
+      .arrow { stroke: #94A3B8; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .arrow-accent { stroke: #2563EB; stroke-width: 2.5; fill: none; stroke-linecap: round; }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#94A3B8" />
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563EB" />
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.04" />
+    </filter>
+  </defs>
+
+  <!-- Title Bar -->
+  <g transform="translate(40, 30)">
+    <rect width="40" height="40" rx="8" fill="#FDF2F8" stroke="#FBCFE8" stroke-width="1.5" />
+    <text x="20" y="25" text-anchor="middle" font-size="16" font-weight="900" fill="#DB2777">NT</text>
+    <text x="56" y="22" class="header-title">Enterprise Notifications &amp; Alerting Hub</text>
+    <text x="56" y="38" class="header-sub">Multi-channel routing for evaluation anomalies, governance hard-gates, and operational alerts</text>
+  </g>
+
+  <!-- Stage 1: Platform Event Sources -->
+  <g transform="translate(40, 95)">
+    <rect width="210" height="625" class="layer-bg" filter="url(#shadow)" />
+    <text x="24" y="32" class="stage-title">1. Trigger Events</text>
+
+    <g transform="translate(16, 50)">
+      <rect width="178" height="85" class="box" />
+      <rect x="12" y="12" width="6" height="6" rx="3" fill="#DC2626" />
+      <text x="26" y="18" class="card-title">HARD_GATE_TRIGGERED</text>
+      <text x="12" y="38" class="card-desc">Safety violation, secret leak,</text>
+      <text x="12" y="54" class="card-desc">or prompt injection blocked</text>
+      <text x="12" y="70" font-size="10" font-weight="700" fill="#DC2626">CRITICAL SEVERITY</text>
+    </g>
+
+    <g transform="translate(16, 145)">
+      <rect width="178" height="85" class="box" />
+      <rect x="12" y="12" width="6" height="6" rx="3" fill="#D97706" />
+      <text x="26" y="18" class="card-title">GOVERNANCE_BLOCKED</text>
+      <text x="12" y="38" class="card-desc">Score below required floor</text>
+      <text x="12" y="54" class="card-desc">or policy non-compliance</text>
+      <text x="12" y="70" font-size="10" font-weight="700" fill="#D97706">HIGH SEVERITY</text>
+    </g>
+
+    <g transform="translate(16, 240)">
+      <rect width="178" height="85" class="box" />
+      <rect x="12" y="12" width="6" height="6" rx="3" fill="#2563EB" />
+      <text x="26" y="18" class="card-title">EVALUATION_FAILED</text>
+      <text x="12" y="38" class="card-desc">Agent crashed, timeout,</text>
+      <text x="12" y="54" class="card-desc">or tool execution exception</text>
+      <text x="12" y="70" font-size="10" font-weight="700" fill="#2563EB">ERROR SEVERITY</text>
+    </g>
+
+    <g transform="translate(16, 335)">
+      <rect width="178" height="85" class="box" />
+      <rect x="12" y="12" width="6" height="6" rx="3" fill="#16A34A" />
+      <text x="26" y="18" class="card-title">EVALUATION_COMPLETED</text>
+      <text x="12" y="38" class="card-desc">Routine evaluation finished</text>
+      <text x="12" y="54" class="card-desc">and passed all assertions</text>
+      <text x="12" y="70" font-size="10" font-weight="700" fill="#16A34A">INFO SEVERITY</text>
+    </g>
+
+    <g transform="translate(16, 430)">
+      <rect width="178" height="175" rx="8" fill="#F8FAFC" stroke="#E2E8F0" />
+      <text x="14" y="24" font-size="11" font-weight="700" fill="#475569">Event Invariants</text>
+      <text x="14" y="48" font-size="11" font-weight="500" fill="#64748B">Workspace-isolated buses</text>
+      <text x="14" y="72" font-size="11" font-weight="500" fill="#64748B">Structured Event Context</text>
+      <text x="14" y="96" font-size="11" font-weight="500" fill="#64748B">Automatic secret scrubbing</text>
+      <text x="14" y="120" font-size="11" font-weight="500" fill="#64748B">Zero infinite alert loops</text>
+      <rect x="14" y="138" width="150" height="25" rx="4" fill="#EFF6FF" />
+      <text x="89" y="154" text-anchor="middle" font-size="10" font-weight="700" fill="#2563EB">WEBHOOK DISPATCH</text>
+    </g>
+  </g>
+
+  <!-- Connect Stage 1 -> 2 -->
+  <path d="M 250 405 L 290 405" class="arrow-accent" marker-end="url(#arrowhead-blue)" />
+
+  <!-- Stage 2: Notification Engine -->
+  <g transform="translate(290, 95)">
+    <rect width="280" height="625" class="layer-bg" filter="url(#shadow)" />
+    <text x="24" y="32" class="stage-title">2. Notification Dispatch Core</text>
+
+    <g transform="translate(16, 50)">
+      <rect width="248" height="120" class="box" />
+      <text x="14" y="22" class="card-title">Channel Resolution &amp; Filtering</text>
+      <text x="14" y="42" class="card-desc">• Query active channels by workspace_id</text>
+      <text x="14" y="58" class="card-desc">• Match event_type against subscriptions</text>
+      <text x="14" y="74" class="card-desc">• Severity threshold filtering</text>
+      <text x="14" y="90" class="card-desc">• Channel enable/disable flag check</text>
+      <rect x="14" y="100" width="90" height="12" rx="3" fill="#ECFDF5" />
+    </g>
+
+    <g transform="translate(16, 180)">
+      <rect width="248" height="135" class="box" />
+      <text x="14" y="22" class="card-title">Sanitization &amp; Scrubbing</text>
+      <text x="14" y="42" class="card-desc">• Redact API keys, tokens, &amp; JWTs</text>
+      <text x="14" y="58" class="card-desc">• Strip confidential prompt arguments</text>
+      <text x="14" y="74" class="card-desc">• Truncate large tool outputs</text>
+      <text x="14" y="90" class="card-desc">• Anonymize user identifiers</text>
+      <rect x="14" y="104" width="160" height="20" rx="3" fill="#FEF3C7" />
+      <text x="94" y="118" text-anchor="middle" font-size="9" font-weight="700" fill="#92400E">AUTOMATED CREDENTIAL REDACTION</text>
+    </g>
+
+    <g transform="translate(16, 325)">
+      <rect width="248" height="145" class="box" />
+      <text x="14" y="22" class="card-title">Multi-Format Payload Formatter</text>
+      <text x="14" y="42" class="card-desc">• Adaptive Cards v1.5 (Teams)</text>
+      <text x="14" y="60" class="card-desc">• Slack Block Kit JSON (Blocks/Fields)</text>
+      <text x="14" y="78" class="card-desc">• Generic Webhook JSON schema</text>
+      <text x="14" y="96" class="card-desc">• HTTPS JSON delivery</text>
+      <text x="14" y="114" class="card-desc">• Direct deep links to AEP UI</text>
+      <rect x="14" y="126" width="120" height="12" rx="3" fill="#EFF6FF" />
+    </g>
+
+    <g transform="translate(16, 480)">
+      <rect width="248" height="125" rx="8" fill="#F8FAFC" stroke="#E2E8F0" />
+      <text x="14" y="24" font-size="11" font-weight="700" fill="#475569">Async Resilience</text>
+      <text x="14" y="46" font-size="11" font-weight="500" fill="#64748B">Non-blocking background workers</text>
+      <text x="14" y="66" font-size="11" font-weight="500" fill="#64748B">Zero slowdown to evaluation run</text>
+      <text x="14" y="86" font-size="11" font-weight="500" fill="#64748B">Exponential backoff retry</text>
+      <text x="14" y="106" font-size="11" font-weight="500" fill="#64748B">Automatic dead-letter logging</text>
+    </g>
+  </g>
+
+  <!-- Connect Stage 2 -> 3 -->
+  <path d="M 570 405 L 610 405" class="arrow-accent" marker-end="url(#arrowhead-blue)" />
+
+  <!-- Stage 3: Channels & Protocols -->
+  <g transform="translate(610, 95)">
+    <rect width="280" height="625" class="layer-bg" filter="url(#shadow)" />
+    <text x="24" y="32" class="stage-title">3. Destination Channels</text>
+
+    <!-- Microsoft Teams -->
+    <g transform="translate(16, 50)">
+      <rect width="248" height="125" class="box" stroke="#C7D2FE" />
+      <rect x="12" y="12" width="20" height="20" rx="4" fill="#EEF2FF" />
+      <text x="22" y="26" text-anchor="middle" font-size="11" font-weight="900" fill="#4F46E5">T</text>
+      <text x="40" y="24" class="card-title">Microsoft Teams</text>
+      <text x="12" y="44" class="card-desc">• Microsoft Adaptive Card schema</text>
+      <text x="12" y="60" class="card-desc">• Colored severity header bars</text>
+      <text x="12" y="76" class="card-desc">• Metadata FactSet: Model, Run, Cost</text>
+      <text x="12" y="92" class="card-desc">• "View Scorecard" OpenURL button</text>
+      <text x="12" y="108" class="card-desc">• "Inspect Trace" OpenURL button</text>
+    </g>
+
+    <!-- Slack -->
+    <g transform="translate(16, 185)">
+      <rect width="248" height="125" class="box" stroke="#E9D5FF" />
+      <rect x="12" y="12" width="20" height="20" rx="4" fill="#FAF5FF" />
+      <text x="22" y="26" text-anchor="middle" font-size="11" font-weight="900" fill="#9333EA">S</text>
+      <text x="40" y="24" class="card-title">Slack Incoming Webhook</text>
+      <text x="12" y="44" class="card-desc">• Slack Block Kit payload structure</text>
+      <text x="12" y="60" class="card-desc">• Markdown alert synopsis &amp; emoji</text>
+      <text x="12" y="76" class="card-desc">• 2-column key-value fields grid</text>
+      <text x="12" y="92" class="card-desc">• Interactive triage action buttons</text>
+      <text x="12" y="108" class="card-desc">• Threaded conversation ready</text>
+    </g>
+
+    <!-- Generic Webhook -->
+    <g transform="translate(16, 320)">
+      <rect width="248" height="125" class="box" stroke="#CBD5E1" />
+      <rect x="12" y="12" width="20" height="20" rx="4" fill="#F1F5F9" />
+      <text x="22" y="26" text-anchor="middle" font-size="11" font-weight="900" fill="#475569">W</text>
+      <text x="40" y="24" class="card-title">Generic Webhook / SIEM</text>
+      <text x="12" y="44" class="card-desc">• Standard JSON envelope</text>
+      <text x="12" y="60" class="card-desc">• Webhook URL masked in API</text>
+      <text x="12" y="76" class="card-desc">• Splunk, Datadog, PagerDuty target</text>
+      <text x="12" y="92" class="card-desc">• Custom internal webhook handlers</text>
+      <text x="12" y="108" class="card-desc">• Full audit payload attached</text>
+    </g>
+
+    <g transform="translate(16, 455)">
+      <rect width="248" height="150" class="box" fill="#F8FAFC" />
+      <text x="14" y="24" font-size="11" font-weight="700" fill="#475569">Delivery Verification</text>
+      <text x="14" y="46" font-size="11" font-weight="500" fill="#64748B">• HTTP Status: 200 OK captured</text>
+      <text x="14" y="66" font-size="11" font-weight="500" fill="#64748B">• Latency recorded per destination</text>
+      <text x="14" y="86" font-size="11" font-weight="500" fill="#64748B">• Delivery history table in UI</text>
+      <text x="14" y="106" font-size="11" font-weight="500" fill="#64748B">• One-click manual test ping</text>
+      <rect x="14" y="120" width="130" height="20" rx="4" fill="#EFF6FF" />
+      <text x="79" y="134" text-anchor="middle" font-size="10" font-weight="700" fill="#2563EB">VERIFIED DELIVERY</text>
+    </g>
+  </g>
+
+  <!-- Connect Stage 3 -> 4 -->
+  <path d="M 890 405 L 930 405" class="arrow-accent" marker-end="url(#arrowhead-blue)" />
+
+  <!-- Stage 4: On-Call & Operator Experience -->
+  <g transform="translate(930, 95)">
+    <rect width="230" height="625" class="layer-bg" filter="url(#shadow)" />
+    <text x="24" y="32" class="stage-title">4. Operational Impact</text>
+
+    <g transform="translate(16, 50)">
+      <rect width="198" height="135" class="box" />
+      <text x="14" y="22" class="card-title">Rapid MTTR</text>
+      <text x="14" y="42" class="card-desc">• Engineers alerted within 50ms</text>
+      <text x="14" y="60" class="card-desc">• Offending prompt &amp; step linked</text>
+      <text x="14" y="78" class="card-desc">• Immediate root-cause diagnosis</text>
+      <text x="14" y="96" class="card-desc">• No log diving or guesswork</text>
+      <rect x="14" y="108" width="100" height="16" rx="3" fill="#ECFDF5" />
+      <text x="64" y="120" text-anchor="middle" font-size="9" font-weight="700" fill="#059669">&lt; 2 MIN TO FIX</text>
+    </g>
+
+    <g transform="translate(16, 195)">
+      <rect width="198" height="135" class="box" />
+      <text x="14" y="22" class="card-title">Governance Accountability</text>
+      <text x="14" y="42" class="card-desc">• Security teams notified of leaks</text>
+      <text x="14" y="60" class="card-desc">• Compliance officers have trails</text>
+      <text x="14" y="78" class="card-desc">• Multi-tenancy audit logs kept</text>
+      <text x="14" y="96" class="card-desc">• Automated escalation policies</text>
+      <rect x="14" y="108" width="120" height="16" rx="3" fill="#FEF3C7" />
+      <text x="74" y="120" text-anchor="middle" font-size="9" font-weight="700" fill="#B45309">AUDIT PROVENANCE</text>
+    </g>
+
+    <g transform="translate(16, 340)">
+      <rect width="198" height="265" class="box" fill="#EFF6FF" stroke="#BFDBFE" />
+      <text x="14" y="24" class="card-title" fill="#1D4ED8">Production Resilience</text>
+      <text x="14" y="48" font-size="11" font-weight="600" fill="#1D4ED8">Autonomous agents</text>
+      <text x="14" y="68" font-size="11" font-weight="500" fill="#1E40AF">must never fail silently.</text>
+      <text x="14" y="96" font-size="11" font-weight="500" fill="#1E40AF">AEP turns silent loops,</text>
+      <text x="14" y="116" font-size="11" font-weight="500" fill="#1E40AF">runaway cost spikes,</text>
+      <text x="14" y="136" font-size="11" font-weight="500" fill="#1E40AF">and prompt jailbreaks</text>
+      <text x="14" y="156" font-size="11" font-weight="500" fill="#1E40AF">into actionable incidents</text>
+      <text x="14" y="176" font-size="11" font-weight="500" fill="#1E40AF">in your team channels.</text>
+      <rect x="14" y="205" width="170" height="40" rx="8" fill="#2563EB" />
+      <text x="99" y="230" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF">Real-time SRE Alerting</text>
+    </g>
+  </g>
+</svg>

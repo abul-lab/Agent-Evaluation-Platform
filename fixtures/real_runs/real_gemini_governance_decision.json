@@ -1,0 +1,14 @@
+{
+  "audit_id": "d3724c6b-41d4-4a93-af0c-9578d8bd4c7d",
+  "policy_id": "f3acb2af-e244-43ea-be7b-641436fccb5c",
+  "policy_name": "Autonomous Agent Governance Policy",
+  "evaluation_id": "9c268e13-9fd2-4965-a79a-3a3969c18045",
+  "verdict": "APPROVED",
+  "passed": true,
+  "violations": [],
+  "violations_count": 0,
+  "critical_violations_count": 0,
+  "overall_score": 100.0,
+  "risk_classification": "EXCELLENT",
+  "audited_at": "2026-11-09T01:55:12.566512Z"
+}

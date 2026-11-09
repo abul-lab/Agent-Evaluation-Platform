@@ -1,0 +1,93 @@
+{
+  "trace_id": "1d371f67ed524d28b048a60d52fa785e",
+  "resource": {
+    "attributes": {
+      "service.name": "customer-logistics-agent",
+      "framework": "openai_agents",
+      "gen_ai.system": "gemini",
+      "telemetry.sdk.name": "openinference-openai",
+      "telemetry.sdk.language": "python",
+      "host.arch": "x86_64",
+      "environment": "production"
+    }
+  },
+  "spans": [
+    {
+      "trace_id": "1d371f67ed524d28b048a60d52fa785e",
+      "span_id": "8d56adb3d4be4cc7",
+      "parent_span_id": null,
+      "name": "thread.run: asst_logistics_concierge",
+      "kind": "INTERNAL",
+      "start_time": 1794189297.1957552,
+      "end_time": 1794189302.2631783,
+      "status": {
+        "status_code": "OK"
+      },
+      "attributes": {
+        "openai.agent": "LogisticsConciergeAgent",
+        "openai.assistant_id": "asst_logistics_v1",
+        "gen_ai.prompt": "Find the latest tracking and delivery status for order number ORD-8891, verify whether it requires a signature, and generate a concise customer delivery update.",
+        "gen_ai.response": "**Delivery Status Update: Order ORD-8891**\n\n* **Status:** Delivered\n* **Delivery Date & Time:** November 8, 2026 at 4:45 PM UTC\n* **Destination:** Austin, TX, USA\n* **Carrier & Service:** FedEx Express \u2013 Priority Overnight\n* **Signature Required:** Yes (Verified)\n* **Received & Signed By:** Front Desk Reception\n\nYour package has been successfully delivered and signed for at the front desk reception."
+      }
+    },
+    {
+      "trace_id": "1d371f67ed524d28b048a60d52fa785e",
+      "span_id": "ff1bf136ac404c36",
+      "parent_span_id": "8d56adb3d4be4cc7",
+      "name": "assistant.run: call_model_select_tool",
+      "kind": "INTERNAL",
+      "start_time": 1794189297.1957552,
+      "end_time": 1794189299.714693,
+      "status": {
+        "status_code": "OK"
+      },
+      "attributes": {
+        "llm.model": "gemini-3.5-flash",
+        "gen_ai.request.model": "gemini-3.5-flash",
+        "gen_ai.prompt": "Find the latest tracking and delivery status for order number ORD-8891, verify whether it requires a signature, and generate a concise customer delivery update.",
+        "gen_ai.response": "Invoking fetch_shipment_status({\"tracking_id\":\"ORD-8891\"})",
+        "gen_ai.usage.prompt_tokens": 144,
+        "gen_ai.usage.completion_tokens": 26,
+        "gen_ai.usage.cost": 0.00035
+      }
+    },
+    {
+      "trace_id": "1d371f67ed524d28b048a60d52fa785e",
+      "span_id": "5691551827e14432",
+      "parent_span_id": "ff1bf136ac404c36",
+      "name": "tool: fetch_shipment_status",
+      "kind": "TOOL",
+      "start_time": 1794189299.7147343,
+      "end_time": 1794189299.765291,
+      "status": {
+        "status_code": "OK"
+      },
+      "attributes": {
+        "tool.name": "fetch_shipment_status",
+        "tool.arguments": "{\"tracking_id\":\"ORD-8891\"}",
+        "tool.result": "{\"tracking_id\": \"ORD-8891\", \"status\": \"DELIVERED\", \"delivered_at\": \"2026-11-08T16:45:00Z\", \"destination\": \"Austin, TX, USA\", \"signed_by\": \"Front Desk Reception\", \"signature_required\": true, \"carrier\": \"FedEx Express\", \"service_level\": \"Priority Overnight\", \"delivery_attempts\": 1}"
+      }
+    },
+    {
+      "trace_id": "1d371f67ed524d28b048a60d52fa785e",
+      "span_id": "f3fa6611bada4f03",
+      "parent_span_id": "8d56adb3d4be4cc7",
+      "name": "assistant.run: synthesize_final_response",
+      "kind": "INTERNAL",
+      "start_time": 1794189299.7653472,
+      "end_time": 1794189302.2631783,
+      "status": {
+        "status_code": "OK"
+      },
+      "attributes": {
+        "llm.model": "gemini-3.5-flash",
+        "gen_ai.request.model": "gemini-3.5-flash",
+        "gen_ai.prompt": "Synthesize customer delivery update based on tool response.",
+        "gen_ai.response": "**Delivery Status Update: Order ORD-8891**\n\n* **Status:** Delivered\n* **Delivery Date & Time:** November 8, 2026 at 4:45 PM UTC\n* **Destination:** Austin, TX, USA\n* **Carrier & Service:** FedEx Express \u2013 Priority Overnight\n* **Signature Required:** Yes (Verified)\n* **Received & Signed By:** Front Desk Reception\n\nYour package has been successfully delivered and signed for at the front desk reception.",
+        "gen_ai.usage.prompt_tokens": 299,
+        "gen_ai.usage.completion_tokens": 102,
+        "gen_ai.usage.cost": 0.00065
+      }
+    }
+  ]
+}

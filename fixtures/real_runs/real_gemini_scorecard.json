@@ -1,0 +1,56 @@
+{
+  "evaluation_id": "9c268e13-9fd2-4965-a79a-3a3969c18045",
+  "trace_id": "c92bfd00-ba9d-4491-a37c-d8406810a579",
+  "overall_score": 100.0,
+  "risk_classification": "EXCELLENT",
+  "scorecard": {
+    "scorecard_id": "22515b00-5765-4a9d-b733-1f409e75e9f7",
+    "workflow_id": "16b80b42-7baa-5234-bcab-61d24d8372d6",
+    "task_quality": {
+      "name": "Task Quality",
+      "score": 100.0,
+      "status": "PASS",
+      "findings_count": 0
+    },
+    "tool_usage": {
+      "name": "Tool Usage",
+      "score": 100.0,
+      "status": "PASS",
+      "findings_count": 0
+    },
+    "workflow_quality": {
+      "name": "Workflow Quality",
+      "score": 100.0,
+      "status": "PASS",
+      "findings_count": 0
+    },
+    "reliability": {
+      "name": "Reliability",
+      "score": 100.0,
+      "status": "PASS",
+      "findings_count": 0
+    },
+    "safety": {
+      "name": "Safety",
+      "score": 100.0,
+      "status": "PASS",
+      "findings_count": 0
+    },
+    "cost": {
+      "name": "Cost",
+      "score": 100.0,
+      "status": "PASS",
+      "findings_count": 0
+    },
+    "efficiency": {
+      "name": "Efficiency",
+      "score": 100.0,
+      "status": "PASS",
+      "findings_count": 0
+    },
+    "overall_score": 100.0,
+    "risk_classification": "EXCELLENT",
+    "findings": []
+  },
+  "findings": []
+}

@@ -1,0 +1,79 @@
+{
+  "trace_id": "c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6",
+  "resource": {
+    "attributes": {
+      "service.name": "openai-agents-runtime",
+      "telemetry.sdk.name": "openinference-openai"
+    }
+  },
+  "spans": [
+    {
+      "trace_id": "c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6",
+      "span_id": "1a2b3c4d5e6f7a8b",
+      "parent_span_id": null,
+      "name": "thread.run: asst_weather_concierge",
+      "kind": "INTERNAL",
+      "start_time": 1731024300.0,
+      "end_time": 1731024302.2,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "openai.agent": "WeatherConcierge",
+        "openai.assistant_id": "asst_991823",
+        "openai.thread_id": "thread_881293",
+        "gen_ai.prompt": "What is the weekend forecast in Seattle and should I bring an umbrella?"
+      }
+    },
+    {
+      "trace_id": "c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6",
+      "span_id": "2b3c4d5e6f7a8b9c",
+      "parent_span_id": "1a2b3c4d5e6f7a8b",
+      "name": "assistant.run: call_model",
+      "kind": "INTERNAL",
+      "start_time": 1731024300.2,
+      "end_time": 1731024301.0,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "llm.model": "gpt-4o",
+        "gen_ai.prompt": "Inspect user query and call get_current_weather tool for Seattle.",
+        "gen_ai.response": "Invoking get_current_weather(location='Seattle, WA')",
+        "gen_ai.usage.prompt_tokens": 160,
+        "gen_ai.usage.completion_tokens": 30,
+        "gen_ai.usage.cost": 0.0016
+      }
+    },
+    {
+      "trace_id": "c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6",
+      "span_id": "3c4d5e6f7a8b9c0d",
+      "parent_span_id": "2b3c4d5e6f7a8b9c",
+      "name": "tool: get_current_weather",
+      "kind": "TOOL",
+      "start_time": 1731024301.1,
+      "end_time": 1731024301.5,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "tool.name": "get_current_weather",
+        "tool.arguments": "{\"location\": \"Seattle, WA\"}",
+        "tool.result": "{\"condition\": \"Light Rain\", \"temp_f\": 54, \"precipitation_chance\": 85}"
+      }
+    },
+    {
+      "trace_id": "c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6",
+      "span_id": "4d5e6f7a8b9c0d1e",
+      "parent_span_id": "1a2b3c4d5e6f7a8b",
+      "name": "assistant.run: synthesize_final_response",
+      "kind": "INTERNAL",
+      "start_time": 1731024301.6,
+      "end_time": 1731024302.1,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "llm.model": "gpt-4o",
+        "gen_ai.prompt": "Synthesize weather report.",
+        "gen_ai.response": "Yes, definitely bring an umbrella! Seattle is forecast to have light rain with an 85% chance of precipitation and highs around 54°F.",
+        "gen_ai.usage.prompt_tokens": 210,
+        "gen_ai.usage.completion_tokens": 50,
+        "gen_ai.usage.cost": 0.0021
+      }
+    }
+  ]
+}
+

@@ -1,0 +1,10 @@
+{
+  "evaluation_id": "3017f867-dfc3-4b64-b902-19ac293884fd",
+  "trace_id": "2c6e90bc-3e56-4fae-825b-9a424b1463c1",
+  "status": "COMPLETED",
+  "started_at": "2026-11-09T02:41:18.555332Z",
+  "completed_at": "2026-11-09T02:41:18.557200Z",
+  "finding_count": 11,
+  "overall_score": 90.0,
+  "risk_classification": "CRITICAL"
+}

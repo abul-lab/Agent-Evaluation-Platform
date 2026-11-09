@@ -1,0 +1,15 @@
+# Secrets and local state must never enter the image
+.env
+.env.*
+.cache/
+
+# Build outputs and dependencies are created inside the image
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+
+# Tooling
+.git
+.github
+coverage/

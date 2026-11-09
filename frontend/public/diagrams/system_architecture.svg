@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" width="100%" height="100%" style="background:#F8FAFC; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <style>
+      .box { fill: #FFFFFF; stroke: #E2E8F0; stroke-width: 1.5; rx: 12px; }
+      .layer-bg { fill: #FFFFFF; stroke: #CBD5E1; stroke-width: 1.5; rx: 16px; }
+      .header-title { font-size: 20px; font-weight: 800; fill: #0F172A; }
+      .header-sub { font-size: 13px; font-weight: 500; fill: #64748B; }
+      .layer-title { font-size: 12px; font-weight: 700; fill: #475569; letter-spacing: 0.05em; text-transform: uppercase; }
+      .node-title { font-size: 14px; font-weight: 700; fill: #0F172A; }
+      .node-desc { font-size: 11px; font-weight: 500; fill: #64748B; }
+      .badge { font-size: 10px; font-weight: 700; rx: 4px; }
+      .arrow { stroke: #94A3B8; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .arrow-accent { stroke: #2563EB; stroke-width: 2.5; fill: none; stroke-linecap: round; }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#94A3B8" />
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2563EB" />
+    </marker>
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.04" />
+    </filter>
+  </defs>
+
+  <!-- Canvas Header -->
+  <g transform="translate(40, 30)">
+    <rect width="40" height="40" rx="8" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1.5" />
+    <text x="20" y="25" text-anchor="middle" font-size="16" font-weight="900" fill="#059669">AE</text>
+    <text x="56" y="22" class="header-title">Agent Evaluation Platform (AEP)</text>
+    <text x="56" y="38" class="header-sub">Universal OpenTelemetry Ingestion &amp; Deterministic Governance Pipeline (v1.0.0)</text>
+    <rect x="990" y="8" width="130" height="26" rx="13" fill="#F1F5F9" stroke="#E2E8F0" />
+    <circle cx="1005" cy="21" r="4" fill="#10B981" />
+    <text x="1016" y="25" font-size="11" font-weight="700" fill="#334155">ENTERPRISE GA</text>
+  </g>
+
+  <!-- LAYER 1: AGENT FRAMEWORKS -->
+  <g transform="translate(40, 95)">
+    <rect width="1120" height="90" class="layer-bg" filter="url(#card-shadow)" />
+    <text x="24" y="24" class="layer-title">Layer 1: Autonomous Agent Frameworks &amp; SDKs</text>
+    
+    <g transform="translate(24, 34)">
+      <rect width="200" height="42" class="box" />
+      <text x="16" y="22" class="node-title">LangGraph</text>
+      <text x="16" y="35" class="node-desc">State graphs &amp; checkpoints</text>
+    </g>
+    <g transform="translate(244, 34)">
+      <rect width="200" height="42" class="box" />
+      <text x="16" y="22" class="node-title">CrewAI</text>
+      <text x="16" y="35" class="node-desc">Multi-agent delegations</text>
+    </g>
+    <g transform="translate(464, 34)">
+      <rect width="200" height="42" class="box" />
+      <text x="16" y="22" class="node-title">AutoGen</text>
+      <text x="16" y="35" class="node-desc">Conversational groupchats</text>
+    </g>
+    <g transform="translate(684, 34)">
+      <rect width="200" height="42" class="box" />
+      <text x="16" y="22" class="node-title">OpenAI Agents SDK</text>
+      <text x="16" y="35" class="node-desc">Routines &amp; swarm handoffs</text>
+    </g>
+    <g transform="translate(904, 34)">
+      <rect width="192" height="42" class="box" />
+      <text x="16" y="22" class="node-title">LlamaIndex / Custom</text>
+      <text x="16" y="35" class="node-desc">OpenInference &amp; OTLP</text>
+    </g>
+  </g>
+
+  <!-- Flow 1 -> 2 Arrows -->
+  <path d="M 600 185 L 600 215" class="arrow-accent" marker-end="url(#arrowhead-blue)" />
+  <text x="612" y="204" font-size="10" font-weight="700" fill="#2563EB">OTLP Spans</text>
+
+  <!-- LAYER 2: UNIVERSAL INGESTION LAYER -->
+  <g transform="translate(40, 220)">
+    <rect width="1120" height="110" class="layer-bg" filter="url(#card-shadow)" />
+    <text x="24" y="24" class="layer-title">Layer 2: Universal OpenTelemetry Ingestion &amp; Protection Gate</text>
+
+    <g transform="translate(24, 34)">
+      <rect width="250" height="60" class="box" />
+      <rect x="180" y="10" width="56" height="18" rx="4" fill="#EFF6FF" stroke="#BFDBFE" />
+      <text x="208" y="22" font-size="9" font-weight="700" fill="#1D4ED8" text-anchor="middle">HTTP POST</text>
+      <text x="16" y="26" class="node-title">OTLP/HTTP Receiver</text>
+      <text x="16" y="42" font-family="monospace" font-size="10" fill="#2563EB">/api/v1/otel/collector</text>
+      <text x="16" y="54" class="node-desc">Alias: /v1/traces (Standard)</text>
+    </g>
+
+    <g transform="translate(294, 34)">
+      <rect width="250" height="60" class="box" />
+      <rect x="180" y="10" width="56" height="18" rx="4" fill="#F5F3FF" stroke="#DDD6FE" />
+      <text x="208" y="22" font-size="9" font-weight="700" fill="#6D28D9" text-anchor="middle">gRPC :4317</text>
+      <text x="16" y="26" class="node-title">OTLP/gRPC Servicer</text>
+      <text x="16" y="42" font-family="monospace" font-size="10" fill="#7C3AED">TraceService/Export</text>
+      <text x="16" y="54" class="node-desc">Binary Protobuf &amp; JSON bytes</text>
+    </g>
+
+    <g transform="translate(564, 34)">
+      <rect width="260" height="60" class="box" />
+      <text x="16" y="26" class="node-title">Workspace Auth &amp; RBAC</text>
+      <text x="16" y="42" class="node-desc">Bearer API Key · x-api-key Header</text>
+      <text x="16" y="54" class="node-desc">ADMIN / ENGINEER / VIEWER</text>
+    </g>
+
+    <g transform="translate(844, 34)">
+      <rect width="252" height="60" class="box" />
+      <text x="16" y="26" class="node-title">Rate Limiting &amp; Backpressure</text>
+      <text x="16" y="42" class="node-desc">Token Bucket: 120 req/min (429)</text>
+      <text x="16" y="54" class="node-desc">Concurrency: Max 50 Active (503)</text>
+    </g>
+  </g>
+
+  <!-- Flow 2 -> 3 Arrows -->
+  <path d="M 600 330 L 600 360" class="arrow-accent" marker-end="url(#arrowhead-blue)" />
+  <text x="612" y="348" font-size="10" font-weight="700" fill="#2563EB">Validated Batches (1-1000 Traces)</text>
+
+  <!-- LAYER 3: TRANSLATION TO CATS -->
+  <g transform="translate(40, 365)">
+    <rect width="1120" height="95" class="layer-bg" filter="url(#card-shadow)" />
+    <text x="24" y="24" class="layer-title">Layer 3: Canonical Agent Trace Schema (CATS) Translation Engine</text>
+
+    <g transform="translate(24, 34)">
+      <rect width="340" height="48" class="box" />
+      <text x="16" y="22" class="node-title">Span Batch Grouper</text>
+      <text x="16" y="38" class="node-desc">Groups multi-tenant spans across scopes by traceId</text>
+    </g>
+
+    <g transform="translate(384, 34)">
+      <rect width="340" height="48" class="box" />
+      <text x="16" y="22" class="node-title">Framework Auto-Detection</text>
+      <text x="16" y="38" class="node-desc">AST attribute heuristic for LangGraph, CrewAI, AutoGen</text>
+    </g>
+
+    <g transform="translate(744, 34)">
+      <rect width="352" height="48" class="box" />
+      <text x="16" y="22" class="node-title">CATS Standard Normalization</text>
+      <text x="16" y="38" class="node-desc">Maps to Sessions, Workflows, Steps &amp; Tool Invocations</text>
+    </g>
+  </g>
+
+  <!-- Flow 3 -> 4 Arrows -->
+  <path d="M 600 460 L 600 490" class="arrow" marker-end="url(#arrowhead)" />
+  <text x="612" y="478" font-size="10" font-weight="700" fill="#64748B">CanonicalTrace</text>
+
+  <!-- LAYER 4: EVALUATION CORE (7 DOMAINS) -->
+  <g transform="translate(40, 495)">
+    <rect width="1120" height="105" class="layer-bg" filter="url(#card-shadow)" />
+    <text x="24" y="24" class="layer-title">Layer 4: Continuous Evaluation Engine (7 Domains)</text>
+
+    <g transform="translate(24, 34)">
+      <rect width="145" height="56" class="box" />
+      <text x="12" y="24" class="node-title">Tool Fidelity</text>
+      <text x="12" y="38" class="node-desc">Hallucination detection</text>
+      <text x="12" y="48" font-size="9" font-weight="700" fill="#059669">Zero-hallucination floor</text>
+    </g>
+
+    <g transform="translate(181, 34)">
+      <rect width="145" height="56" class="box" />
+      <text x="12" y="24" class="node-title">Cycle Detector</text>
+      <text x="12" y="38" class="node-desc">Graph loop detection</text>
+      <text x="12" y="48" font-size="9" font-weight="700" fill="#D97706">State &amp; token lockups</text>
+    </g>
+
+    <g transform="translate(338, 34)">
+      <rect width="145" height="56" class="box" />
+      <text x="12" y="24" class="node-title">Retry Storms</text>
+      <text x="12" y="38" class="node-desc">Backoff validation</text>
+      <text x="12" y="48" font-size="9" font-weight="700" fill="#2563EB">Cascade prevention</text>
+    </g>
+
+    <g transform="translate(495, 34)">
+      <rect width="145" height="56" class="box" />
+      <text x="12" y="24" class="node-title">Budget Evaluator</text>
+      <text x="12" y="38" class="node-desc">Token &amp; cost caps</text>
+      <text x="12" y="48" font-size="9" font-weight="700" fill="#7C3AED">USD / latency floors</text>
+    </g>
+
+    <g transform="translate(652, 34)">
+      <rect width="145" height="56" class="box" />
+      <text x="12" y="24" class="node-title">Secret Scanner</text>
+      <text x="12" y="38" class="node-desc">API keys &amp; PII audit</text>
+      <text x="12" y="48" font-size="9" font-weight="700" fill="#DC2626">Hard gate security</text>
+    </g>
+
+    <g transform="translate(809, 34)">
+      <rect width="145" height="56" class="box" />
+      <text x="12" y="24" class="node-title">Performance</text>
+      <text x="12" y="38" class="node-desc">Step latency &amp; graphs</text>
+      <text x="12" y="48" font-size="9" font-weight="700" fill="#0284C7">&lt; 5ms eval engine</text>
+    </g>
+
+    <g transform="translate(966, 34)">
+      <rect width="130" height="56" class="box" />
+      <text x="12" y="24" class="node-title">Semantic QA</text>
+      <text x="12" y="38" class="node-desc">LLM faithfulness</text>
+      <text x="12" y="48" font-size="9" font-weight="700" fill="#4F46E5">DeepEval / Fallback</text>
+    </g>
+  </g>
+
+  <!-- Flow 4 -> 5 Arrows -->
+  <path d="M 600 600 L 600 630" class="arrow" marker-end="url(#arrowhead)" />
+  <text x="612" y="618" font-size="10" font-weight="700" fill="#64748B">Evaluation Scorecards &amp; Findings</text>
+
+  <!-- LAYER 5: GOVERNANCE, STORAGE, & ALERTS -->
+  <g transform="translate(40, 635)">
+    <rect width="1120" height="120" class="layer-bg" filter="url(#card-shadow)" />
+    <text x="24" y="24" class="layer-title">Layer 5: Governance Gating, Storage &amp; Enterprise Alerting</text>
+
+    <g transform="translate(24, 34)">
+      <rect width="340" height="70" class="box" />
+      <text x="16" y="26" class="node-title">Policy &amp; Release Gating</text>
+      <text x="16" y="42" class="node-desc">Automated CI/CD compliance verdict: APPROVED / REJECTED</text>
+      <text x="16" y="58" class="node-desc">Deterministic score floors · Hard-stop on critical findings</text>
+    </g>
+
+    <g transform="translate(384, 34)">
+      <rect width="340" height="70" class="box" />
+      <text x="16" y="26" class="node-title">Trace Repository &amp; Analytics</text>
+      <text x="16" y="42" class="node-desc">Workspace-scoped SQLite · Foreign key isolation</text>
+      <text x="16" y="58" class="node-desc">Golden fixture regression comparator · Historical trends</text>
+    </g>
+
+    <g transform="translate(744, 34)">
+      <rect width="352" height="70" class="box" />
+      <text x="16" y="26" class="node-title">Enterprise Notifications Hub</text>
+      <text x="16" y="42" class="node-desc">Slack Block Kit · Microsoft Teams Adaptive Cards</text>
+      <text x="16" y="58" class="node-desc">Generic Webhooks · Automatic retry with exponential backoff</text>
+    </g>
+  </g>
+</svg>
+

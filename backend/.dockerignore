@@ -1,0 +1,27 @@
+# Secrets and local state must never enter the image
+.env
+.env.*
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+.cache/
+data/
+
+# Tooling and caches
+.git
+.github
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Frontend artifacts that do not belong in the backend image
+node_modules/
+.next/

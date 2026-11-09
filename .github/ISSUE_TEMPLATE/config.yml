@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Community Discussions
+    url: https://github.com/abul-lab/Agent-Evaluation-Platform/discussions
+    about: Ask questions, share evaluation workflows, and connect with other agent engineers.
+  - name: 🔒 Security Vulnerability Reporting
+    url: https://github.com/abul-lab/Agent-Evaluation-Platform/security/advisories/new
+    about: Privately disclose sensitive security vulnerabilities.
+

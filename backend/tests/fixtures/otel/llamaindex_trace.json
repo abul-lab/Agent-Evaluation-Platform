@@ -1,0 +1,61 @@
+{
+  "trace_id": "f1e2d3c4b5a6f7e8d9c0b1a2f3e4d5c6",
+  "resource": {
+    "attributes": {
+      "service.name": "knowledge-base-rag",
+      "framework": "llama_index"
+    }
+  },
+  "spans": [
+    {
+      "trace_id": "f1e2d3c4b5a6f7e8d9c0b1a2f3e4d5c6",
+      "span_id": "a0b1c2d3e4f5a6b7",
+      "parent_span_id": null,
+      "name": "query_engine.query",
+      "kind": "INTERNAL",
+      "start_time": 1731024400.0,
+      "end_time": 1731024401.8,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "llama_index.step": "query",
+        "query": "What is our company remote work policy on international travel?"
+      }
+    },
+    {
+      "trace_id": "f1e2d3c4b5a6f7e8d9c0b1a2f3e4d5c6",
+      "span_id": "b1c2d3e4f5a6b7c8",
+      "parent_span_id": "a0b1c2d3e4f5a6b7",
+      "name": "retriever.retrieve",
+      "kind": "INTERNAL",
+      "start_time": 1731024400.2,
+      "end_time": 1731024400.7,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "llama_index.step": "retrieval",
+        "llama_index.node_count": 3,
+        "tool.name": "vector_index_retriever",
+        "tool.arguments": "{\"query\": \"remote work international travel policy\", \"top_k\": 3}",
+        "tool.result": "{\"nodes\": [\"Section 4.2: Employees may work up to 30 days per year from approved international countries with prior manager approval.\"]}"
+      }
+    },
+    {
+      "trace_id": "f1e2d3c4b5a6f7e8d9c0b1a2f3e4d5c6",
+      "span_id": "c2d3e4f5a6b7c8d9",
+      "parent_span_id": "a0b1c2d3e4f5a6b7",
+      "name": "synthesizer.synthesize",
+      "kind": "INTERNAL",
+      "start_time": 1731024400.8,
+      "end_time": 1731024401.7,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "llama_index.step": "synthesize",
+        "llm.model": "gpt-4o",
+        "gen_ai.prompt": "Summarize retrieved context for employee query.",
+        "gen_ai.response": "According to Section 4.2 of the company handbook, employees are permitted to work remotely from approved international destinations for up to 30 business days per calendar year, subject to prior manager approval.",
+        "gen_ai.usage.prompt_tokens": 280,
+        "gen_ai.usage.completion_tokens": 55,
+        "gen_ai.usage.cost": 0.0028
+      }
+    }
+  ]
+}

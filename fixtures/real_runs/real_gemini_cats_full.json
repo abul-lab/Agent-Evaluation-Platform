@@ -1,0 +1,169 @@
+{
+  "session": {
+    "session_id": "1d371f67-ed52-4d28-b048-a60d52fa785e",
+    "user_intent": "Find the latest tracking and delivery status for order number ORD-8891, verify whether it requires a signature, and generate a concise customer delivery update.",
+    "context_data": {
+      "detected_framework": "OPENAI_AGENTS",
+      "otel_trace_id": "1d371f67ed524d28b048a60d52fa785e"
+    },
+    "budget_constraints": {
+      "max_usd": "1.0000",
+      "max_latency_ms": 30000,
+      "max_tokens": 100000
+    },
+    "created_at": "2026-11-09T01:54:57.195755Z"
+  },
+  "agents": [
+    {
+      "agent_id": "13560db7-9f94-5287-875c-6ff36ab8ae9e",
+      "name": "Openai_AgentsAgent",
+      "role": "Autonomous Agent Worker",
+      "system_prompt_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "model_identifier": "gpt-4o",
+      "temperature": 0.0,
+      "tool_registry": [
+        {
+          "tool_name": "fetch_shipment_status",
+          "description": "Auto-registered tool capability: fetch_shipment_status",
+          "parameters_schema": {
+            "tracking_id": "ORD-8891"
+          }
+        }
+      ]
+    }
+  ],
+  "workflow": {
+    "workflow_id": "16b80b42-7baa-5234-bcab-61d24d8372d6",
+    "session_id": "1d371f67-ed52-4d28-b048-a60d52fa785e",
+    "framework": "CUSTOM",
+    "orchestrator_type": "DIRECTED_ACYCLIC_GRAPH",
+    "status": "SUCCESS",
+    "total_cost_usd": "0.00100",
+    "total_latency_ms": 10132
+  },
+  "steps": [
+    {
+      "step_id": "4359aecf-8e37-53b3-bd35-5931a0610ce6",
+      "workflow_id": "16b80b42-7baa-5234-bcab-61d24d8372d6",
+      "agent_id": "13560db7-9f94-5287-875c-6ff36ab8ae9e",
+      "step_index": 0,
+      "node_name": "thread.run: asst_logistics_concierge",
+      "input_state": {
+        "prompt": "Find the latest tracking and delivery status for order number ORD-8891, verify whether it requires a signature, and generate a concise customer delivery update.",
+        "_otel_span_id": "8d56adb3d4be4cc7"
+      },
+      "output_state": {
+        "response": "**Delivery Status Update: Order ORD-8891**\n\n* **Status:** Delivered\n* **Delivery Date & Time:** November 8, 2026 at 4:45 PM UTC\n* **Destination:** Austin, TX, USA\n* **Carrier & Service:** FedEx Express \u2013 Priority Overnight\n* **Signature Required:** Yes (Verified)\n* **Received & Signed By:** Front Desk Reception\n\nYour package has been successfully delivered and signed for at the front desk reception."
+      },
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "latency_ms": 5067,
+      "tool_calls": [],
+      "retries": []
+    },
+    {
+      "step_id": "81db5ff9-e54b-562c-931e-35ecb15e5816",
+      "workflow_id": "16b80b42-7baa-5234-bcab-61d24d8372d6",
+      "agent_id": "13560db7-9f94-5287-875c-6ff36ab8ae9e",
+      "step_index": 1,
+      "node_name": "assistant.run: call_model_select_tool",
+      "input_state": {
+        "prompt": "Find the latest tracking and delivery status for order number ORD-8891, verify whether it requires a signature, and generate a concise customer delivery update.",
+        "_otel_span_id": "ff1bf136ac404c36",
+        "_otel_parent_span_id": "8d56adb3d4be4cc7"
+      },
+      "output_state": {
+        "response": "Invoking fetch_shipment_status({\"tracking_id\":\"ORD-8891\"})"
+      },
+      "token_usage": {
+        "prompt_tokens": 144,
+        "completion_tokens": 26,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "latency_ms": 2518,
+      "tool_calls": [],
+      "retries": []
+    },
+    {
+      "step_id": "12c2f481-7829-5af3-a07f-067a7161deb5",
+      "workflow_id": "16b80b42-7baa-5234-bcab-61d24d8372d6",
+      "agent_id": "13560db7-9f94-5287-875c-6ff36ab8ae9e",
+      "step_index": 2,
+      "node_name": "tool: fetch_shipment_status",
+      "input_state": {
+        "raw_input": "tool: fetch_shipment_status",
+        "_otel_span_id": "5691551827e14432",
+        "_otel_parent_span_id": "ff1bf136ac404c36"
+      },
+      "output_state": {
+        "raw_output": "Step 'tool: fetch_shipment_status' completed."
+      },
+      "token_usage": {
+        "prompt_tokens": 0,
+        "completion_tokens": 0,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "latency_ms": 50,
+      "tool_calls": [
+        {
+          "tool_call_id": "79f6e0cf-59d9-51d1-9d7b-5f722f9adf06",
+          "step_id": "12c2f481-7829-5af3-a07f-067a7161deb5",
+          "tool_name": "fetch_shipment_status",
+          "declared_schema": null,
+          "raw_arguments": {
+            "tracking_id": "ORD-8891"
+          },
+          "parsed_arguments": {
+            "tracking_id": "ORD-8891"
+          },
+          "execution_result": {
+            "tracking_id": "ORD-8891",
+            "status": "DELIVERED",
+            "delivered_at": "2026-11-08T16:45:00Z",
+            "destination": "Austin, TX, USA",
+            "signed_by": "Front Desk Reception",
+            "signature_required": true,
+            "carrier": "FedEx Express",
+            "service_level": "Priority Overnight",
+            "delivery_attempts": 1
+          },
+          "is_error": false,
+          "is_hallucinated": false,
+          "is_redundant": false,
+          "execution_time_ms": 50
+        }
+      ],
+      "retries": []
+    },
+    {
+      "step_id": "28acad6b-3f1e-5317-9906-bee724f7e34f",
+      "workflow_id": "16b80b42-7baa-5234-bcab-61d24d8372d6",
+      "agent_id": "13560db7-9f94-5287-875c-6ff36ab8ae9e",
+      "step_index": 3,
+      "node_name": "assistant.run: synthesize_final_response",
+      "input_state": {
+        "prompt": "Synthesize customer delivery update based on tool response.",
+        "_otel_span_id": "f3fa6611bada4f03",
+        "_otel_parent_span_id": "8d56adb3d4be4cc7"
+      },
+      "output_state": {
+        "response": "**Delivery Status Update: Order ORD-8891**\n\n* **Status:** Delivered\n* **Delivery Date & Time:** November 8, 2026 at 4:45 PM UTC\n* **Destination:** Austin, TX, USA\n* **Carrier & Service:** FedEx Express \u2013 Priority Overnight\n* **Signature Required:** Yes (Verified)\n* **Received & Signed By:** Front Desk Reception\n\nYour package has been successfully delivered and signed for at the front desk reception."
+      },
+      "token_usage": {
+        "prompt_tokens": 299,
+        "completion_tokens": 102,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "latency_ms": 2497,
+      "tool_calls": [],
+      "retries": []
+    }
+  ]
+}

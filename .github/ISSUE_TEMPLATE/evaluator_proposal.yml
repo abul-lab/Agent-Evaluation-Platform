@@ -1,0 +1,46 @@
+name: 🛡️ New Deterministic Evaluator Proposal
+description: Propose a new deterministic quality, reliability, or safety evaluator rule.
+title: "[EVALUATOR]: "
+labels: ["evaluator", "rule-proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        AEP evaluators must be strictly deterministic, mathematical, and require 0 LLM API calls.
+  - type: input
+    id: rule_name
+    attributes:
+      label: Evaluator Rule Identifier
+      description: Uppercase snake_case rule code (e.g. PARAMETER_SCHEMA_VIOLATION, RATE_LIMIT_WARNING).
+      placeholder: "TOOL_TIMEOUT_CASCADE"
+    validations:
+      required: true
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Target Scoring Domain
+      options:
+        - Task Quality
+        - Tool Usage
+        - Workflow Quality
+        - Reliability
+        - Safety
+        - Cost
+        - Efficiency
+    validations:
+      required: true
+  - type: textarea
+    id: heuristic
+    attributes:
+      label: Mathematical / Static Heuristic
+      description: Explain the exact algorithm or static condition used to detect this defect.
+    validations:
+      required: true
+  - type: textarea
+    id: remediation
+    attributes:
+      label: Recommended Remediation Guidance
+      description: The actionable advice surfaced to the user when this defect is detected.
+    validations:
+      required: true
+

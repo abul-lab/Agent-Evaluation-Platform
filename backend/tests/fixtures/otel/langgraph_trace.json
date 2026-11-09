@@ -1,0 +1,81 @@
+{
+  "trace_id": "4bf92f3577b34da6a3ce929d0e0e4736",
+  "resource": {
+    "attributes": {
+      "service.name": "customer-support-graph",
+      "framework": "langgraph",
+      "telemetry.sdk.language": "python",
+      "telemetry.sdk.name": "opentelemetry"
+    }
+  },
+  "spans": [
+    {
+      "trace_id": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "span_id": "00f067aa0ba902b7",
+      "parent_span_id": null,
+      "name": "langgraph.workflow: customer_support_graph",
+      "kind": "INTERNAL",
+      "start_time": 1731024000.0,
+      "end_time": 1731024001.4,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "langgraph.workflow_name": "customer_support_graph",
+        "gen_ai.prompt": "Customer ORD-9912 requesting status update on delayed shipment."
+      }
+    },
+    {
+      "trace_id": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "span_id": "5fb397be34d23b0f",
+      "parent_span_id": "00f067aa0ba902b7",
+      "name": "langgraph.node: triage_agent",
+      "kind": "INTERNAL",
+      "start_time": 1731024000.1,
+      "end_time": 1731024000.6,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "langgraph.node_name": "triage_agent",
+        "llm.model": "gpt-4o",
+        "gen_ai.request.model": "gpt-4o",
+        "gen_ai.prompt": "Extract order ID and determine customer intent.",
+        "gen_ai.response": "Target order is ORD-9912. Route to tracking tool.",
+        "gen_ai.usage.prompt_tokens": 120,
+        "gen_ai.usage.completion_tokens": 45,
+        "gen_ai.usage.cost": 0.0018
+      }
+    },
+    {
+      "trace_id": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "span_id": "9a7b321c884210e3",
+      "parent_span_id": "5fb397be34d23b0f",
+      "name": "tool: fetch_delivery_status",
+      "kind": "TOOL",
+      "start_time": 1731024000.65,
+      "end_time": 1731024000.95,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "tool.name": "fetch_delivery_status",
+        "tool.arguments": "{\"order_id\": \"ORD-9912\"}",
+        "tool.result": "{\"status\": \"IN_TRANSIT\", \"eta\": \"2026-11-09T14:00:00Z\", \"location\": \"Distribution Hub Chicago\"}"
+      }
+    },
+    {
+      "trace_id": "4bf92f3577b34da6a3ce929d0e0e4736",
+      "span_id": "8c41029abce91001",
+      "parent_span_id": "00f067aa0ba902b7",
+      "name": "langgraph.node: response_synthesizer",
+      "kind": "INTERNAL",
+      "start_time": 1731024001.0,
+      "end_time": 1731024001.35,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "langgraph.node_name": "response_synthesizer",
+        "llm.model": "gpt-4o",
+        "gen_ai.prompt": "Compose friendly notification with tracking details.",
+        "gen_ai.response": "Hello, order ORD-9912 is currently in transit through the Chicago Hub and expected on Nov 9.",
+        "gen_ai.usage.prompt_tokens": 180,
+        "gen_ai.usage.completion_tokens": 65,
+        "gen_ai.usage.cost": 0.0022
+      }
+    }
+  ]
+}

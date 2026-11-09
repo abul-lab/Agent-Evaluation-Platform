@@ -1,0 +1,163 @@
+{
+  "session": {
+    "session_id": "55555555-5555-4555-8555-555555555555",
+    "user_intent": "Analyze cluster dump logs and summarize root cause of memory pressure.",
+    "context_data": {
+      "cluster_name": "k8s-us-east-1",
+      "dump_path": "s3://prod-logs/crash-dump-20261108.tar.gz"
+    },
+    "budget_constraints": {
+      "max_usd": "0.1000",
+      "max_latency_ms": 20000,
+      "max_tokens": 15000
+    },
+    "created_at": "2026-11-08T01:40:00Z"
+  },
+  "agents": [
+    {
+      "agent_id": "aaaaaaaa-5555-4aaa-8aaa-aaaaaaaaaaaa",
+      "name": "ClusterDiagnosticsAgent",
+      "role": "Log Analysis Engineer",
+      "system_prompt_hash": "e5f6a7b8c9d0123456789012abcdef0123456789abcdef0123456789abcdef05",
+      "model_identifier": "gpt-4o-2024-08-06",
+      "temperature": 0.0,
+      "tool_registry": [
+        {
+          "tool_name": "fetch_log_chunk",
+          "description": "Fetch unpruned raw log slices from S3 bucket.",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "offset_bytes": { "type": "integer" },
+              "chunk_size_kb": { "type": "integer" }
+            },
+            "required": ["offset_bytes", "chunk_size_kb"]
+          }
+        }
+      ]
+    }
+  ],
+  "workflow": {
+    "workflow_id": "bbbbbbbb-5555-4bbb-8bbb-bbbbbbbbbbbb",
+    "session_id": "55555555-5555-4555-8555-555555555555",
+    "framework": "LANGGRAPH",
+    "orchestrator_type": "DIRECTED_ACYCLIC_GRAPH",
+    "status": "BUDGET_EXCEEDED",
+    "total_cost_usd": "0.4250",
+    "total_latency_ms": 22400
+  },
+  "steps": [
+    {
+      "step_id": "cccccccc-5001-4ccc-8ccc-cccccccccccc",
+      "workflow_id": "bbbbbbbb-5555-4bbb-8bbb-bbbbbbbbbbbb",
+      "agent_id": "aaaaaaaa-5555-4aaa-8aaa-aaaaaaaaaaaa",
+      "step_index": 0,
+      "node_name": "fetch_chunk_0",
+      "input_state": { "offset": 0 },
+      "output_state": { "chunk_read_bytes": 1048576 },
+      "token_usage": {
+        "prompt_tokens": 3000,
+        "completion_tokens": 500,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "latency_ms": 3200,
+      "tool_calls": [
+        {
+          "tool_call_id": "dddddddd-5001-4ddd-8ddd-dddddddddddd",
+          "step_id": "cccccccc-5001-4ccc-8ccc-cccccccccccc",
+          "tool_name": "fetch_log_chunk",
+          "raw_arguments": { "offset_bytes": 0, "chunk_size_kb": 1024 },
+          "parsed_arguments": { "offset_bytes": 0, "chunk_size_kb": 1024 },
+          "execution_result": { "bytes_returned": 1048576, "has_more": true },
+          "is_error": false,
+          "is_hallucinated": false,
+          "is_redundant": false,
+          "execution_time_ms": 1200
+        }
+      ],
+      "retries": []
+    },
+    {
+      "step_id": "cccccccc-5002-4ccc-8ccc-cccccccccccc",
+      "workflow_id": "bbbbbbbb-5555-4bbb-8bbb-bbbbbbbbbbbb",
+      "agent_id": "aaaaaaaa-5555-4aaa-8aaa-aaaaaaaaaaaa",
+      "step_index": 1,
+      "node_name": "fetch_chunk_1",
+      "input_state": { "offset": 1048576 },
+      "output_state": { "chunk_read_bytes": 2097152 },
+      "token_usage": {
+        "prompt_tokens": 8500,
+        "completion_tokens": 800,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "latency_ms": 5100,
+      "tool_calls": [
+        {
+          "tool_call_id": "dddddddd-5002-4ddd-8ddd-dddddddddddd",
+          "step_id": "cccccccc-5002-4ccc-8ccc-cccccccccccc",
+          "tool_name": "fetch_log_chunk",
+          "raw_arguments": { "offset_bytes": 1048576, "chunk_size_kb": 2048 },
+          "parsed_arguments": { "offset_bytes": 1048576, "chunk_size_kb": 2048 },
+          "execution_result": { "bytes_returned": 2097152, "has_more": true },
+          "is_error": false,
+          "is_hallucinated": false,
+          "is_redundant": false,
+          "execution_time_ms": 1800
+        }
+      ],
+      "retries": []
+    },
+    {
+      "step_id": "cccccccc-5003-4ccc-8ccc-cccccccccccc",
+      "workflow_id": "bbbbbbbb-5555-4bbb-8bbb-bbbbbbbbbbbb",
+      "agent_id": "aaaaaaaa-5555-4aaa-8aaa-aaaaaaaaaaaa",
+      "step_index": 2,
+      "node_name": "fetch_chunk_2",
+      "input_state": { "offset": 3145728 },
+      "output_state": { "chunk_read_bytes": 4194304 },
+      "token_usage": {
+        "prompt_tokens": 16000,
+        "completion_tokens": 1200,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "latency_ms": 6800,
+      "tool_calls": [
+        {
+          "tool_call_id": "dddddddd-5003-4ddd-8ddd-dddddddddddd",
+          "step_id": "cccccccc-5003-4ccc-8ccc-cccccccccccc",
+          "tool_name": "fetch_log_chunk",
+          "raw_arguments": { "offset_bytes": 3145728, "chunk_size_kb": 4096 },
+          "parsed_arguments": { "offset_bytes": 3145728, "chunk_size_kb": 4096 },
+          "execution_result": { "bytes_returned": 4194304, "has_more": true },
+          "is_error": false,
+          "is_hallucinated": false,
+          "is_redundant": false,
+          "execution_time_ms": 2400
+        }
+      ],
+      "retries": []
+    },
+    {
+      "step_id": "cccccccc-5004-4ccc-8ccc-cccccccccccc",
+      "workflow_id": "bbbbbbbb-5555-4bbb-8bbb-bbbbbbbbbbbb",
+      "agent_id": "aaaaaaaa-5555-4aaa-8aaa-aaaaaaaaaaaa",
+      "step_index": 3,
+      "node_name": "fetch_chunk_3",
+      "input_state": { "offset": 7340032 },
+      "output_state": { "error": "Budget limit exceeded; aborting run" },
+      "token_usage": {
+        "prompt_tokens": 32000,
+        "completion_tokens": 2000,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "latency_ms": 7300,
+      "tool_calls": [],
+      "retries": []
+    }
+  ]
+}
+

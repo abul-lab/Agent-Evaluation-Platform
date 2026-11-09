@@ -1,0 +1,10 @@
+{
+  "evaluation_id": "9c268e13-9fd2-4965-a79a-3a3969c18045",
+  "trace_id": "c92bfd00-ba9d-4491-a37c-d8406810a579",
+  "status": "COMPLETED",
+  "started_at": "2026-11-09T01:55:04.373256Z",
+  "completed_at": "2026-11-09T01:55:04.374293Z",
+  "finding_count": 0,
+  "overall_score": 100.0,
+  "risk_classification": "EXCELLENT"
+}

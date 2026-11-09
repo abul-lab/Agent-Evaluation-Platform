@@ -1,0 +1,62 @@
+{
+  "trace_id": "99aa88bb77cc66dd55ee44ff33aa22bb",
+  "resource": {
+    "attributes": {
+      "service.name": "autogen-code-assistant",
+      "framework": "autogen"
+    }
+  },
+  "spans": [
+    {
+      "trace_id": "99aa88bb77cc66dd55ee44ff33aa22bb",
+      "span_id": "aa11bb22cc33dd44",
+      "parent_span_id": null,
+      "name": "autogen.chat: UserProxy -> CoderAssistant",
+      "kind": "INTERNAL",
+      "start_time": 1731024200.0,
+      "end_time": 1731024203.0,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "autogen.agent": "UserProxyAgent",
+        "sender": "user_proxy",
+        "recipient": "coder_assistant",
+        "gen_ai.prompt": "Write a python function to compute fibonacci numbers with memoization."
+      }
+    },
+    {
+      "trace_id": "99aa88bb77cc66dd55ee44ff33aa22bb",
+      "span_id": "bb22cc33dd44ee55",
+      "parent_span_id": "aa11bb22cc33dd44",
+      "name": "autogen.agent: CoderAssistant",
+      "kind": "INTERNAL",
+      "start_time": 1731024200.5,
+      "end_time": 1731024202.0,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "autogen.agent": "CoderAssistant",
+        "llm.model": "gpt-4o",
+        "gen_ai.prompt": "Implement recursive memoized fibonacci with type annotations.",
+        "gen_ai.response": "def fib(n: int, memo: dict = {}) -> int: ...",
+        "gen_ai.usage.prompt_tokens": 140,
+        "gen_ai.usage.completion_tokens": 95,
+        "gen_ai.usage.cost": 0.0025
+      }
+    },
+    {
+      "trace_id": "99aa88bb77cc66dd55ee44ff33aa22bb",
+      "span_id": "cc33dd44ee55ff66",
+      "parent_span_id": "bb22cc33dd44ee55",
+      "name": "tool: python_code_runner",
+      "kind": "TOOL",
+      "start_time": 1731024202.1,
+      "end_time": 1731024202.8,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "tool.name": "python_code_runner",
+        "tool.arguments": "{\"code\": \"print(fib(10))\"}",
+        "tool.result": "{\"stdout\": \"55\\n\", \"exit_code\": 0}"
+      }
+    }
+  ]
+}
+

@@ -1,0 +1,99 @@
+{
+  "session": {
+    "session_id": "7f1d43a6-5743-4dc9-980e-3fa171350a22",
+    "user_intent": "Analyze customer support ticket and retrieve resolution steps.",
+    "context_data": {
+      "ticket_id": "TCK-1092"
+    },
+    "budget_constraints": {
+      "max_usd": "0.5000",
+      "max_latency_ms": 15000,
+      "max_tokens": 10000
+    },
+    "created_at": "2026-11-08T00:00:00Z"
+  },
+  "agents": [
+    {
+      "agent_id": "2b260e0a-3c58-472d-8ae5-08e1a7eb4438",
+      "name": "SupportResolutionAgent",
+      "role": "Support Triage Specialist",
+      "system_prompt_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "model_identifier": "gpt-4o-2024-08-06",
+      "temperature": 0.2,
+      "tool_registry": [
+        {
+          "tool_name": "lookup_ticket_kb",
+          "description": "Look up knowledge base articles for a ticket category.",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "category": { "type": "string" }
+            },
+            "required": ["category"]
+          }
+        }
+      ]
+    }
+  ],
+  "workflow": {
+    "workflow_id": "c1f822ae-ecf3-4a69-8fa9-994df55d9d74",
+    "session_id": "7f1d43a6-5743-4dc9-980e-3fa171350a22",
+    "framework": "LANGGRAPH",
+    "orchestrator_type": "DIRECTED_ACYCLIC_GRAPH",
+    "status": "SUCCESS",
+    "total_cost_usd": "0.0125",
+    "total_latency_ms": 2300
+  },
+  "steps": [
+    {
+      "step_id": "3127814a-5f96-4a47-a9c4-5477a3469041",
+      "workflow_id": "c1f822ae-ecf3-4a69-8fa9-994df55d9d74",
+      "agent_id": "2b260e0a-3c58-472d-8ae5-08e1a7eb4438",
+      "step_index": 0,
+      "node_name": "kb_lookup_node",
+      "input_state": {
+        "ticket_category": "billing"
+      },
+      "output_state": {
+        "article_found": true,
+        "article_id": "KB-402"
+      },
+      "token_usage": {
+        "prompt_tokens": 420,
+        "completion_tokens": 85,
+        "cached_tokens": 128,
+        "reasoning_tokens": 0
+      },
+      "latency_ms": 1200,
+      "tool_calls": [
+        {
+          "tool_call_id": "8bbbe5bf-5e3e-43d9-9520-2ff5e3be1ff1",
+          "step_id": "3127814a-5f96-4a47-a9c4-5477a3469041",
+          "tool_name": "lookup_ticket_kb",
+          "declared_schema": {
+            "type": "object",
+            "properties": {
+              "category": { "type": "string" }
+            }
+          },
+          "raw_arguments": {
+            "category": "billing"
+          },
+          "parsed_arguments": {
+            "category": "billing"
+          },
+          "execution_result": {
+            "status": "found",
+            "kb_id": "KB-402"
+          },
+          "is_error": false,
+          "is_hallucinated": false,
+          "is_redundant": false,
+          "execution_time_ms": 450
+        }
+      ],
+      "retries": []
+    }
+  ]
+}
+

@@ -1,0 +1,66 @@
+name: 🐛 Bug Report
+description: Create a report to help us fix a bug or unexpected behavior in AEP.
+title: "[BUG]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the sections below to help us diagnose and reproduce the issue.
+  - type: input
+    id: version
+    attributes:
+      label: AEP Version
+      description: What version of AEP are you running? (e.g., 1.0.0, Docker image tag, or commit SHA)
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected Subsystem
+      options:
+        - Ingestion API (/api/v1/traces)
+        - Deterministic Evaluator Suite
+        - Scorecard Engine & Risk Classifier
+        - React Flow Workflow Canvas
+        - Evaluation Benchmarks & Leaderboards
+        - Historical Analytics
+        - Policy Engine & Governance Gates
+        - Workspaces & RBAC
+        - Export Engine (JSON/MD/CSV)
+        - Documentation / Deployment
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Step-by-step reproduction instructions. Include trace JSON if applicable.
+      placeholder: |
+        1. Ingest trace with schema ...
+        2. Execute POST /api/v1/evaluations/run
+        3. Observe unexpected score or exception ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error Logs or Terminal Output
+      description: Paste any relevant console or server logs here.
+      render: shell
+

@@ -1,0 +1,183 @@
+{
+  "session": {
+    "session_id": "44444444-4444-4444-8444-444444444444",
+    "user_intent": "Dispatch critical two-factor security token to user via SMS gateway.",
+    "context_data": {
+      "user_id": "usr_99812",
+      "destination_e164": "+15550192834"
+    },
+    "budget_constraints": {
+      "max_usd": "0.1500",
+      "max_latency_ms": 20000,
+      "max_tokens": 10000
+    },
+    "created_at": "2026-11-08T01:30:00Z"
+  },
+  "agents": [
+    {
+      "agent_id": "aaaaaaaa-4444-4aaa-8aaa-aaaaaaaaaaaa",
+      "name": "NotificationDispatcherAgent",
+      "role": "Reliable Messaging Gateway Operator",
+      "system_prompt_hash": "d4e5f6a7b8c9012345678901abcdef0123456789abcdef0123456789abcdef04",
+      "model_identifier": "gpt-4o-2024-08-06",
+      "temperature": 0.0,
+      "tool_registry": [
+        {
+          "tool_name": "generate_otp_token",
+          "description": "Cryptographically generates single-use 6-digit numeric token.",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "user_id": { "type": "string" }
+            },
+            "required": ["user_id"]
+          }
+        },
+        {
+          "tool_name": "send_sms_gateway",
+          "description": "Send SMS message via external telecom aggregator API.",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "recipient": { "type": "string" },
+              "message_body": { "type": "string" }
+            },
+            "required": ["recipient", "message_body"]
+          }
+        }
+      ]
+    }
+  ],
+  "workflow": {
+    "workflow_id": "bbbbbbbb-4444-4bbb-8bbb-bbbbbbbbbbbb",
+    "session_id": "44444444-4444-4444-8444-444444444444",
+    "framework": "LANGGRAPH",
+    "orchestrator_type": "DIRECTED_ACYCLIC_GRAPH",
+    "status": "SUCCESS",
+    "total_cost_usd": "0.0245",
+    "total_latency_ms": 7800
+  },
+  "steps": [
+    {
+      "step_id": "cccccccc-4001-4ccc-8ccc-cccccccccccc",
+      "workflow_id": "bbbbbbbb-4444-4bbb-8bbb-bbbbbbbbbbbb",
+      "agent_id": "aaaaaaaa-4444-4aaa-8aaa-aaaaaaaaaaaa",
+      "step_index": 0,
+      "node_name": "generate_token_node",
+      "input_state": { "user_id": "usr_99812" },
+      "output_state": { "otp": "492108", "expiry_seconds": 300 },
+      "token_usage": {
+        "prompt_tokens": 350,
+        "completion_tokens": 40,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "latency_ms": 500,
+      "tool_calls": [
+        {
+          "tool_call_id": "dddddddd-4001-4ddd-8ddd-dddddddddddd",
+          "step_id": "cccccccc-4001-4ccc-8ccc-cccccccccccc",
+          "tool_name": "generate_otp_token",
+          "raw_arguments": { "user_id": "usr_99812" },
+          "parsed_arguments": { "user_id": "usr_99812" },
+          "execution_result": { "token": "492108" },
+          "is_error": false,
+          "is_hallucinated": false,
+          "is_redundant": false,
+          "execution_time_ms": 50
+        }
+      ],
+      "retries": []
+    },
+    {
+      "step_id": "cccccccc-4002-4ccc-8ccc-cccccccccccc",
+      "workflow_id": "bbbbbbbb-4444-4bbb-8bbb-bbbbbbbbbbbb",
+      "agent_id": "aaaaaaaa-4444-4aaa-8aaa-aaaaaaaaaaaa",
+      "step_index": 1,
+      "node_name": "transmit_sms_node",
+      "input_state": {
+        "recipient": "+15550192834",
+        "otp": "492108"
+      },
+      "output_state": {
+        "delivery_status": "DELIVERED",
+        "gateway_message_id": "msg_twilio_9981a7"
+      },
+      "token_usage": {
+        "prompt_tokens": 780,
+        "completion_tokens": 85,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "latency_ms": 6800,
+      "tool_calls": [
+        {
+          "tool_call_id": "dddddddd-4002-4ddd-8ddd-dddddddddddd",
+          "step_id": "cccccccc-4002-4ccc-8ccc-cccccccccccc",
+          "tool_name": "send_sms_gateway",
+          "raw_arguments": {
+            "recipient": "+15550192834",
+            "message_body": "Your verification code is 492108."
+          },
+          "parsed_arguments": {
+            "recipient": "+15550192834",
+            "message_body": "Your verification code is 492108."
+          },
+          "execution_result": {
+            "status": "SENT",
+            "provider_id": "msg_twilio_9981a7"
+          },
+          "is_error": false,
+          "is_hallucinated": false,
+          "is_redundant": false,
+          "execution_time_ms": 3200
+        }
+      ],
+      "retries": [
+        {
+          "retry_id": "eeeeeeee-4001-4eee-8eee-eeeeeeeeeeee",
+          "step_id": "cccccccc-4002-4ccc-8ccc-cccccccccccc",
+          "attempt_number": 1,
+          "error_type": "RATE_LIMIT",
+          "backoff_duration_ms": 800,
+          "resolution": "EXHAUSTED"
+        },
+        {
+          "retry_id": "eeeeeeee-4002-4eee-8eee-eeeeeeeeeeee",
+          "step_id": "cccccccc-4002-4ccc-8ccc-cccccccccccc",
+          "attempt_number": 2,
+          "error_type": "RATE_LIMIT",
+          "backoff_duration_ms": 1600,
+          "resolution": "EXHAUSTED"
+        },
+        {
+          "retry_id": "eeeeeeee-4003-4eee-8eee-eeeeeeeeeeee",
+          "step_id": "cccccccc-4002-4ccc-8ccc-cccccccccccc",
+          "attempt_number": 3,
+          "error_type": "RATE_LIMIT",
+          "backoff_duration_ms": 3200,
+          "resolution": "RESOLVED"
+        }
+      ]
+    },
+    {
+      "step_id": "cccccccc-4003-4ccc-8ccc-cccccccccccc",
+      "workflow_id": "bbbbbbbb-4444-4bbb-8bbb-bbbbbbbbbbbb",
+      "agent_id": "aaaaaaaa-4444-4aaa-8aaa-aaaaaaaaaaaa",
+      "step_index": 2,
+      "node_name": "confirmation_node",
+      "input_state": { "delivery_status": "DELIVERED" },
+      "output_state": { "final_status": "SUCCESS_TOKEN_DISPATCHED" },
+      "token_usage": {
+        "prompt_tokens": 420,
+        "completion_tokens": 30,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "latency_ms": 500,
+      "tool_calls": [],
+      "retries": []
+    }
+  ]
+}
+

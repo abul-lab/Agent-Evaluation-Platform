@@ -1,0 +1,47 @@
+{
+  "session": {
+    "session_id": "invalid-uuid-not-conforming",
+    "user_intent": "",
+    "budget_constraints": {
+      "max_usd": "-1.5000",
+      "max_latency_ms": -500,
+      "max_tokens": -10
+    },
+    "created_at": "not-a-datetime"
+  },
+  "agents": [
+    {
+      "agent_id": "invalid-uuid",
+      "name": "",
+      "role": "Analyst",
+      "system_prompt_hash": "short",
+      "model_identifier": "gpt-4",
+      "temperature": 5.0,
+      "tool_registry": []
+    }
+  ],
+  "workflow": {
+    "workflow_id": "not-a-uuid",
+    "session_id": "not-a-uuid",
+    "framework": "UNSUPPORTED_FRAMEWORK_NAME",
+    "orchestrator_type": "UNKNOWN_TOPOLOGY",
+    "status": "NOT_A_STATUS",
+    "total_cost_usd": "-10.00",
+    "total_latency_ms": -100
+  },
+  "steps": [
+    {
+      "step_id": "not-a-uuid",
+      "workflow_id": "not-a-uuid",
+      "agent_id": "not-a-uuid",
+      "step_index": -1,
+      "node_name": "",
+      "token_usage": {
+        "prompt_tokens": -50,
+        "completion_tokens": -10
+      },
+      "latency_ms": -300
+    }
+  ]
+}
+

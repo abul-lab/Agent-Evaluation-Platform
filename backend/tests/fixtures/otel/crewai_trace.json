@@ -1,0 +1,78 @@
+{
+  "trace_id": "8a7c293041924fa682bc0e192a831001",
+  "resource": {
+    "attributes": {
+      "service.name": "financial-research-crew",
+      "framework": "crewai"
+    }
+  },
+  "spans": [
+    {
+      "trace_id": "8a7c293041924fa682bc0e192a831001",
+      "span_id": "1111222233334444",
+      "parent_span_id": null,
+      "name": "crewai.crew: FinancialAnalysisCrew",
+      "kind": "INTERNAL",
+      "start_time": 1731024100.0,
+      "end_time": 1731024102.5,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "crewai.crew_name": "FinancialAnalysisCrew",
+        "gen_ai.prompt": "Analyze Q3 10-Q filing for semiconductor capital expenditure trends."
+      }
+    },
+    {
+      "trace_id": "8a7c293041924fa682bc0e192a831001",
+      "span_id": "2222333344445555",
+      "parent_span_id": "1111222233334444",
+      "name": "crewai.agent: Senior Equity Researcher",
+      "kind": "INTERNAL",
+      "start_time": 1731024100.2,
+      "end_time": 1731024101.5,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "crewai.agent_name": "Senior Equity Researcher",
+        "llm.model": "gpt-4o",
+        "gen_ai.prompt": "Extract wafer fab equipment spending and inventory growth.",
+        "gen_ai.response": "Capex rose 14% quarter-over-quarter driven by AI accelerator packaging.",
+        "gen_ai.usage.prompt_tokens": 450,
+        "gen_ai.usage.completion_tokens": 120,
+        "gen_ai.usage.cost": 0.0055
+      }
+    },
+    {
+      "trace_id": "8a7c293041924fa682bc0e192a831001",
+      "span_id": "3333444455556666",
+      "parent_span_id": "2222333344445555",
+      "name": "tool: sec_filing_scraper",
+      "kind": "TOOL",
+      "start_time": 1731024100.8,
+      "end_time": 1731024101.2,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "tool.name": "sec_filing_scraper",
+        "tool.arguments": "{\"ticker\": \"NVDA\", \"form\": \"10-Q\"}",
+        "tool.result": "{\"capex_millions\": 1450, \"operating_cash_flow\": 4800}"
+      }
+    },
+    {
+      "trace_id": "8a7c293041924fa682bc0e192a831001",
+      "span_id": "4444555566667777",
+      "parent_span_id": "1111222233334444",
+      "name": "crewai.agent: Compliance Reviewer",
+      "kind": "INTERNAL",
+      "start_time": 1731024101.6,
+      "end_time": 1731024102.4,
+      "status": { "status_code": "OK" },
+      "attributes": {
+        "crewai.agent_name": "Compliance Reviewer",
+        "llm.model": "gpt-4o",
+        "gen_ai.prompt": "Verify financial metrics against GAAP guidelines.",
+        "gen_ai.response": "Report approved. No material non-public information detected.",
+        "gen_ai.usage.prompt_tokens": 300,
+        "gen_ai.usage.completion_tokens": 80,
+        "gen_ai.usage.cost": 0.0035
+      }
+    }
+  ]
+}
