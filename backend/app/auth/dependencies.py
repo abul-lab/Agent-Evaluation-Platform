@@ -9,6 +9,7 @@ Authentication rules:
   them regardless of environment (see :func:`require_role`).
 """
 
+import logging
 from collections.abc import Callable
 from typing import Annotated
 
@@ -26,11 +27,16 @@ bearer_scheme = HTTPBearer(auto_error=False)
 
 _AUTH_CHALLENGE = {"WWW-Authenticate": "Bearer"}
 
+logger = logging.getLogger(__name__)
+
 
 def authenticate_bearer_token(session: Session, raw_token: str) -> AuthPrincipal:
     """Resolve an API key into a principal, or raise HTTP 401 if it is not valid."""
-    record = AuthService(session).authenticate_key(raw_token.strip())
+    token = raw_token.strip()
+    record = AuthService(session).authenticate_key(token)
     if not record:
+        # Log the first characters only, so an operator can correlate attempts without the secret.
+        logger.warning("Rejected API key attempt (prefix=%s, length=%d)", token[:8], len(token))
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid, expired, or revoked API key.",

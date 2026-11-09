@@ -288,3 +288,51 @@ def test_anonymous_access_requires_development_and_flag() -> None:
         ALLOW_ANONYMOUS_VIEWER=True,
     ).anonymous_access_enabled
     assert not Settings(ENVIRONMENT="development", ALLOW_ANONYMOUS_VIEWER=False).anonymous_access_enabled
+
+
+def test_rejected_key_is_logged_without_full_secret(
+    anon_client: TestClient, caplog: pytest.LogCaptureFixture
+) -> None:
+    secret = "aep_" + "f" * 40
+    with caplog.at_level("WARNING"):
+        res = anon_client.get(f"{API}/traces", headers={"Authorization": f"Bearer {secret}"})
+    assert res.status_code == 401
+    assert "Rejected API key attempt" in caplog.text
+    assert secret not in caplog.text
+
+
+def test_webhook_host_resolving_to_private_address_is_blocked(monkeypatch: pytest.MonkeyPatch) -> None:
+    import socket
+
+    from app.core.webhook_security import assert_resolves_publicly
+
+    def fake_getaddrinfo(*args: object, **kwargs: object) -> list[tuple[object, ...]]:
+        return [(socket.AF_INET, socket.SOCK_STREAM, 6, "", ("10.1.2.3", 443))]
+
+    monkeypatch.setattr(socket, "getaddrinfo", fake_getaddrinfo)
+    with pytest.raises(ValueError):
+        assert_resolves_publicly("https://hooks.example.com/services/x")
+
+
+def test_webhook_host_resolving_to_public_address_is_allowed(monkeypatch: pytest.MonkeyPatch) -> None:
+    import socket
+
+    from app.core.webhook_security import assert_resolves_publicly
+
+    def fake_getaddrinfo(*args: object, **kwargs: object) -> list[tuple[object, ...]]:
+        return [(socket.AF_INET, socket.SOCK_STREAM, 6, "", ("93.184.216.34", 443))]
+
+    monkeypatch.setattr(socket, "getaddrinfo", fake_getaddrinfo)
+    assert_resolves_publicly("https://hooks.example.com/services/x")
+
+
+def test_unresolvable_webhook_host_is_not_blocked_by_dns_check(monkeypatch: pytest.MonkeyPatch) -> None:
+    import socket
+
+    from app.core.webhook_security import assert_resolves_publicly
+
+    def fake_getaddrinfo(*args: object, **kwargs: object) -> None:
+        raise socket.gaierror("no such host")
+
+    monkeypatch.setattr(socket, "getaddrinfo", fake_getaddrinfo)
+    assert_resolves_publicly("https://nonexistent.example.invalid/hook")

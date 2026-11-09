@@ -59,7 +59,7 @@ Every `POST`, `PUT`, `PATCH`, and `DELETE` route requires an authenticated ident
 - **Storage**: webhook URLs are stored as given, because they are needed to deliver alerts. They are **not encrypted at rest**. Anyone with database access can read them.
 - **Responses**: the API never returns a raw webhook URL. Channel responses contain `webhook_url_masked` (`https://hooks.slack.com/****`). Delivery errors have the raw URL replaced before they are stored or returned.
 - **Destination validation** (`backend/app/core/webhook_security.py`): HTTPS only; no embedded credentials; no `localhost`; no private, loopback, link-local, reserved, or multicast IP literals.
-- **Not covered**: a hostname that resolves to a private address (DNS rebinding) passes validation. Egress filtering at the network layer is required if the server can reach internal networks.
+- **Delivery-time DNS check** (`assert_resolves_publicly`): before each send, the host is resolved, and delivery is refused if any address is private, loopback, link-local, or reserved. DNS rebinding between that check and the connection is not fully prevented. Egress filtering at the network layer is still required if the server can reach internal networks.
 
 ---
 
@@ -85,7 +85,7 @@ Every `POST`, `PUT`, `PATCH`, and `DELETE` route requires an authenticated ident
 
 - Administrative events (key create, use, and revoke; workspace and member changes; policy changes) are written to `workspace_audit_logs` with actor, action, resource, and timestamp.
 - **No API endpoint updates or deletes individual audit records.** Deleting a workspace (ADMIN only) also deletes its audit logs. Treat the database as the system of record for retention, and back it up.
-- Failed authentication attempts are returned as HTTP 401 but are **not** written to the audit log yet.
+- Rejected API-key attempts are returned as HTTP 401 and logged to the application log with only the first 8 characters of the key and its length. They are **not** written to the workspace audit log.
 
 ---
 
@@ -110,7 +110,8 @@ Every `POST`, `PUT`, `PATCH`, and `DELETE` route requires an authenticated ident
 
 - The backend image runs as an unprivileged `app` user. The frontend image runs as `node`.
 - Python dependencies are pinned in `backend/requirements.txt` (runtime) and `backend/requirements-dev.txt` (tests and linters) with exact versions. Frontend dependencies are pinned by `frontend/package-lock.json`.
-- **Not in CI yet**: dependency vulnerability scanning (for example `pip-audit` or `npm audit`), container image scanning, and static security analysis (for example CodeQL or Bandit). Add these before relying on the project in production.
+- **In CI:** `pip-audit` runs against the pinned Python runtime dependencies, and `npm audit --audit-level=high` runs against the frontend. CodeQL and Dependabot run on the repository.
+- **Not in CI yet:** container image scanning. Add these before relying on the project in production.
 
 ---
 
@@ -121,16 +122,16 @@ Every `POST`, `PUT`, `PATCH`, and `DELETE` route requires an authenticated ident
 | R1 | No user accounts or SSO. Every human uses a shared or personal API key. | Keys are workspace-scoped and revocable. | Add an identity provider in front of the dashboard, or a server-side session proxy. |
 | R2 | The dashboard stores its API key in `localStorage`. | Only an optional, per-browser key. | Use a server-side proxy that keeps the key out of the browser. |
 | R3 | Webhook URLs are stored unencrypted. | Not returned by the API. | Encrypt the database volume, or add field-level encryption. |
-| R4 | DNS-based SSRF through webhook hostnames. | Literal private IPs and `localhost` are rejected. | Enforce egress filtering on the backend host. |
+| R4 | DNS-based SSRF through webhook hostnames. | Literal private IPs and `localhost` are rejected at save time. Hostnames that resolve to private addresses are refused at delivery. | Enforce egress filtering on the backend host. DNS rebinding is not fully prevented. |
 | R5 | No built-in TLS. | Documented reverse-proxy setup. | Deploy behind TLS only. |
 | R6 | Rate limits are per process only. | Documented proxy limits. | Enforce limits at the proxy. |
 | R7 | Audit logs are deleted with their workspace. | Documented; ADMIN-only. | Export audit logs to external storage if they must be retained. |
-| R8 | Failed authentication attempts are not audited. | HTTP 401 responses only. | Log at the reverse proxy, or add auditing in a follow-up. |
+| R8 | Failed authentication attempts are not in the workspace audit log. | Rejected keys are logged to the application log (key prefix and length only). | Ship application logs to central storage, or log at the reverse proxy. |
 | R9 | `/system/info` and `/version` are public. They expose version, module names, and database status. | No secrets are exposed. | Restrict at the proxy if the deployment should not reveal its version. |
 | R10 | A key's role is fixed at creation. There are no scopes narrower than the three roles. | Least privilege by role choice. | Issue ENGINEER keys to CI, not ADMIN keys. |
 | R11 | `created_by` on key creation is caller-supplied (audit metadata only). | Actor on the audit trail is the authenticated principal. | Treat `created_by` as informational. |
-| R12 | No dependency vulnerability or container scanning in CI. | Versions pinned. | See section 10. |
-| R13 | CSV exports can contain spreadsheet formulas (CSV injection). | None yet. | Prefix cells beginning with `=`, `+`, `-`, `@` with a single quote in `report_service.generate_csv_report`. |
+| R12 | No container image scanning. | `pip-audit` and `npm audit` run in CI; CodeQL and Dependabot are enabled. | Add container image scanning if the images are ever deployed. |
+| R13 | Resolved. Spreadsheet formula characters at the start of CSV cells are prefixed with a single quote (`csv_safe` in `report_service.py`). | Tested in `backend/tests/services/test_csv_safety.py`. | n/a |
 | R14 | Resolved. Documentation previously described HMAC-signed webhooks, which the code does not implement; the docs now describe the actual behavior. | n/a | Re-add signing as a feature if needed. |
 
 ---
