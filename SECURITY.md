@@ -85,7 +85,7 @@ Every `POST`, `PUT`, `PATCH`, and `DELETE` route requires an authenticated ident
 
 - Administrative events (key create, use, and revoke; workspace and member changes; policy changes) are written to `workspace_audit_logs` with actor, action, resource, and timestamp.
 - **No API endpoint updates or deletes individual audit records.** Deleting a workspace (ADMIN only) also deletes its audit logs. Treat the database as the system of record for retention, and back it up.
-- Rejected API-key attempts are returned as HTTP 401 and logged to the application log with only the first 8 characters of the key and its length. They are **not** written to the workspace audit log.
+- Rejected API-key attempts are returned as HTTP 401 and logged to the application log as an event only. No part of the submitted key is logged. They are **not** written to the workspace audit log.
 
 ---
 
@@ -126,7 +126,7 @@ Every `POST`, `PUT`, `PATCH`, and `DELETE` route requires an authenticated ident
 | R5 | No built-in TLS. | Documented reverse-proxy setup. | Deploy behind TLS only. |
 | R6 | Rate limits are per process only. | Documented proxy limits. | Enforce limits at the proxy. |
 | R7 | Audit logs are deleted with their workspace. | Documented; ADMIN-only. | Export audit logs to external storage if they must be retained. |
-| R8 | Failed authentication attempts are not in the workspace audit log. | Rejected keys are logged to the application log (key prefix and length only). | Ship application logs to central storage, or log at the reverse proxy. |
+| R8 | Failed authentication attempts are not in the workspace audit log. | Rejected keys are logged to the application log as an event (no key material). | Ship application logs to central storage, or log at the reverse proxy. |
 | R9 | `/system/info` and `/version` are public. They expose version, module names, and database status. | No secrets are exposed. | Restrict at the proxy if the deployment should not reveal its version. |
 | R10 | A key's role is fixed at creation. There are no scopes narrower than the three roles. | Least privilege by role choice. | Issue ENGINEER keys to CI, not ADMIN keys. |
 | R11 | `created_by` on key creation is caller-supplied (audit metadata only). | Actor on the audit trail is the authenticated principal. | Treat `created_by` as informational. |

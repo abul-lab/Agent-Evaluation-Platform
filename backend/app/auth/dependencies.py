@@ -35,8 +35,8 @@ def authenticate_bearer_token(session: Session, raw_token: str) -> AuthPrincipal
     token = raw_token.strip()
     record = AuthService(session).authenticate_key(token)
     if not record:
-        # Log the first characters only, so an operator can correlate attempts without the secret.
-        logger.warning("Rejected API key attempt (prefix=%s, length=%d)", token[:8], len(token))
+        # Log the event only. Any part of the submitted key is secret material, so none is logged.
+        logger.warning("Rejected API key attempt")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid, expired, or revoked API key.",
