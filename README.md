@@ -2,8 +2,6 @@
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](VERSION)
 [![CI Build](https://github.com/abul-lab/Agent-Evaluation-Platform/actions/workflows/ci.yml/badge.svg)](https://github.com/abul-lab/Agent-Evaluation-Platform/actions/workflows/ci.yml)
-[![Backend Tests](https://img.shields.io/badge/tests-368%20passing-brightgreen.svg)]()
-[![Code Coverage](https://img.shields.io/badge/coverage-92%25-brightgreen.svg)]()
 [![Type Checking](https://img.shields.io/badge/types-MyPy%20%26%20TypeScript%20Strict-blue.svg)]()
 [![Code Quality](https://img.shields.io/badge/style-Ruff%20%26%20ESLint%20Clean-purple.svg)]()
 [![Architecture](https://img.shields.io/badge/telemetry-OpenTelemetry%20Native-emerald.svg)](docs/diagrams/system_architecture.svg)
@@ -22,7 +20,7 @@ An OpenTelemetry-native evaluation harness and automated governance gatekeeper f
 - [OpenTelemetry Native Ingestion](#-opentelemetry-native-ingestion)
 - [Automated Governance & CI/CD Release Gating](#-automated-governance--cicd-release-gating)
 - [Notifications & Webhook Dispatch (Teams, Slack, Generic Webhooks)](#-notifications--webhook-dispatch-teams-slack-generic-webhooks)
-- [Verified Performance Benchmarks](#-verified-performance-benchmarks)
+- [Verified Quality Gates](#-verified-quality-gates)
 - [Technology Stack](#-technology-stack)
 - [Quick Start Guide](#-quick-start-guide)
   - [Prerequisites](#prerequisites)
@@ -52,7 +50,7 @@ Autonomous AI agents (powered by LangGraph, CrewAI, AutoGen, or custom tool-call
 
 ![System Architecture](docs/diagrams/system_architecture.svg)
 
-AEP consists of five decoupled, production-tested tiers:
+AEP consists of five decoupled tiers:
 
 1. **Agent Emitters (Zero SDK Changes):** Agents running on **LangGraph, CrewAI, AutoGen, OpenAI Agents SDK, or LlamaIndex** export standard OpenTelemetry (OTLP) traces over HTTP or gRPC.
 2. **Ingestion Gate (`/api/v1/otel/collector`):** Authenticates workspace API keys (SHA-256), enforces sliding-window rate limits, and buffers span batches.
@@ -270,7 +268,7 @@ For architecture reviews, system walk-throughs, and technical evaluation:
 - **[System Architecture Guide](docs/demo/architecture_walkthrough.md):** Presentation guide for all 5 vector SVG diagrams.
 - **[System Design Considerations & Trade-offs](docs/demo/design_considerations.md):** Technical analysis of concurrency, scaling, and determinism tradeoffs.
 - **[Engineering Case Study](docs/demo/design_considerations.md):** Architectural case study and retrospective (also available at `http://localhost:3000/case-study` while running locally).
-- **[Platform Verification Metrics](README.md#-verified-performance-benchmarks):** Codebase analytics and verification coverage (also available at `http://localhost:3000/about` while running locally).
+- **[Platform Verification Metrics](README.md#-verified-quality-gates):** Codebase analytics and verification coverage (also available at `http://localhost:3000/about` while running locally).
 
 ---
 
