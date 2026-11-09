@@ -5,6 +5,7 @@ so they are stored for delivery but never returned by the API in raw form.
 """
 
 import ipaddress
+import socket
 from urllib.parse import urlsplit
 
 MASK = "****"
@@ -61,3 +62,35 @@ def validate_webhook_url(url: str) -> str:
     ):
         raise ValueError("Webhook URL must not target private or reserved IP addresses.")
     return url
+
+
+def _is_public_address(ip: ipaddress.IPv4Address | ipaddress.IPv6Address) -> bool:
+    return not (
+        ip.is_private
+        or ip.is_loopback
+        or ip.is_link_local
+        or ip.is_reserved
+        or ip.is_multicast
+        or ip.is_unspecified
+    )
+
+
+def assert_resolves_publicly(url: str) -> None:
+    """Raise ValueError if the webhook host resolves to any private or reserved address.
+
+    Run at delivery time, so a hostname that later points at an internal address is blocked
+    at the moment of sending. DNS rebinding between this check and the connection is not
+    fully prevented; egress filtering on the backend host remains the complete control.
+    If the host does not resolve, the check passes and the HTTP request fails on its own.
+    """
+    host = urlsplit(url).hostname
+    if not host:
+        raise ValueError("Webhook URL must include a host name.")
+    try:
+        infos = socket.getaddrinfo(host, 443, proto=socket.IPPROTO_TCP)
+    except socket.gaierror:
+        return
+    for info in infos:
+        address = str(info[4][0]).split("%", 1)[0]
+        if not _is_public_address(ipaddress.ip_address(address)):
+            raise ValueError("Webhook host resolves to a private or reserved address.")

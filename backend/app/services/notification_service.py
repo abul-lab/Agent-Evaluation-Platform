@@ -15,7 +15,7 @@ from uuid import UUID
 import httpx
 from sqlmodel import Session, col, select
 
-from app.core.webhook_security import mask_webhook_url, scrub_webhook_url
+from app.core.webhook_security import assert_resolves_publicly, mask_webhook_url, scrub_webhook_url
 from app.db.entities import (
     NotificationChannelRecord,
     NotificationDeliveryRecord,
@@ -363,6 +363,10 @@ class NotificationService:
         max_retries: int = 1,
     ) -> tuple[bool, int | None, str | None]:
         """Post a payload to a webhook with timeout and retry backoff."""
+        try:
+            assert_resolves_publicly(webhook_url)
+        except ValueError as exc:
+            return False, None, scrub_webhook_url(str(exc), webhook_url)
         client = self._get_client()
         last_error: str | None = None
         last_status: int | None = None
